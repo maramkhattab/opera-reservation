@@ -2,8 +2,111 @@
 import React, { Component } from 'react'
 // import { connect } from 'react-redux'
 import "./login.css";
+import Button from "../../Components/UI/button//button";
+import Input from "../../Components/UI/Input/Input";
 class Login extends Component {
+    state = {
+        loginForm: {
+
+            username: {
+                elementType: "input",
+                elementConfig: {
+                    type: "text",
+                    placeholder: "UserName"
+                },
+                value: "",
+                validation: {
+                    required: true,
+                    minLength: 5,
+                    maxLength: 15,
+                    startLetter: true,
+                    nospace: true
+                },
+                errorMessage: "The screen name should start with a letter and with no spaces",
+                length:false,
+                valid: false,
+                touched: false
+            },
+            password: {
+                elementType: "input",
+                elementConfig: {
+                    type: "password",
+                    placeholder: "Password"
+                },
+                value: "",
+                validation: {
+                    required: true,
+                    minLength: 8,
+                    maxLength: 25
+                },
+                errorMessage: "Password should be between 8 and 25 characters long",
+                valid: false,
+                touched: false,
+                length:false
+            }
+        },
+        formIsValid: false,
+        loading: false,
+        error: {},
+        token: "",
+        errorEmail: false,
+        errorScreenname: false,
+        errorLenScreenname: false,
+        errorMessage: null
+    };
+    inputChangedHandler = (event, inputIdentifier) => {
+        const updatedloginForm = {
+            ...this.state.loginForm
+        };
+        const updatedFormElement = {
+            ...updatedloginForm[inputIdentifier]
+        };
+        updatedFormElement.value = event.target.value;
+        updatedFormElement.valid = this.checkValidity(
+            updatedFormElement.value,
+            updatedFormElement.validation,
+        );
+        updatedFormElement.touched = true;
+        updatedloginForm[inputIdentifier] = updatedFormElement;
+
+        let formIsValid = true;
+        for (let inputIdentifier in updatedloginForm) {
+            formIsValid = updatedloginForm[inputIdentifier].valid && formIsValid;
+        }
+        this.setState({ loginForm: updatedloginForm, formIsValid: formIsValid });
+    };
+
+    checkValidity(value, rules) {
+        let isValid = true;
+
+        if (rules.startLetter) {
+            isValid = !!value.match(/^[a-zA-Z][a-zA-Z_0-9]*$/) && isValid;
+        }
+
+        if (rules.required) {
+            isValid = value.trim() !== "" && isValid;
+        }
+        if (rules.nospace) {
+            isValid = !(value.indexOf(" ") >= 0) && isValid;
+        }
+        if (rules.minLength) {
+            isValid = value.length >= rules.minLength && isValid;
+        }
+
+        if (rules.maxLength) {
+            isValid = value.length <= rules.maxLength && isValid;
+        }
+
+        return isValid;
+    }
     render() {
+        const formElementsArray = [];
+        for (let key in this.state.loginForm) {
+            formElementsArray.push({
+                id: key,
+                config: this.state.loginForm[key]
+            });
+        }
         return (
             <div className="Body">
 
@@ -11,39 +114,30 @@ class Login extends Component {
                     <div className="container">
                         <form className="loginBox" >
                             <h3 className="headerText">Log in to Opera house reservation portal</h3>
-                            <div className="form-group">
+                            {this.state.errorMessage}
+                            {formElementsArray.map(formElement => (
+                            <Input
+                            key={formElement.id}
+                            elementType={formElement.config.elementType}
+                            elementConfig={formElement.config.elementConfig}
+                            value={formElement.config.value}
+                            invalid={!formElement.config.valid}
+                            errorMessage={formElement.config.errorMessage}
+                            shouldValidate={formElement.config.validation}
+                            touched={formElement.config.touched}
+                            autoFocus={formElement.config.autoFocus}
+                            changed={event => this.inputChangedHandler(event, formElement.id)}
+                           
+                        />
+                    ))}
 
-                                <input
-                                    className="form-control inputFields"
-                                    id="exampleInputEmail1"
-                                    aria-describedby="emailHelp"
-                                    placeholder="Enter username"
-                                    autoFocus
-
-                                />
-
-                            </div>
-
-                            <br />
-                            <div className="form-group">
-                                <input
-                                    type="password"
-                                    style={{ marginBottom: "25px" }}
-                                    className="form-control inputFields"
-                                    id="exampleInputPassword1"
-                                    placeholder="Password"
-
-                                />
-
-
-                            </div>
                             <button
                                 type="submit"
-
                                 className="btn btn-primary loginButton"
+                                disabled={!this.state.formIsValid}
                             >
                                 Log in
-                  </button>
+                             </button>
 
                         </form>
                     </div>
