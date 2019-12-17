@@ -11,12 +11,14 @@ class Signup extends Component {
                 elementType: "input",
                 elementConfig: {
                     type: "text",
-                    placeholder: "UserName"
+                    placeholder: "Username"
                 },
                 value: "",
                 validation: {
                     required: true,
-                    maxLength: 15
+                    nospace: true,
+                    maxLength: 15,
+                    startLetter: true
                 },
                 errorMessage: "Maximum length is 15",
                 valid: false,
@@ -113,6 +115,34 @@ class Signup extends Component {
                 valid: false,
                 touched: false
             },
+            city: {
+                elementType: "text",
+                elementConfig: {
+                    type: "text",
+                    placeholder: "City"
+                },
+                value: "",
+                validation: {
+                    required: true
+                },
+                errorMessage: "",
+                valid: false,
+                touched: false
+            },
+            Address: {
+                elementType: "text",
+                elementConfig: {
+                    type: "text",
+                    placeholder: "Address"
+                },
+                value: "",
+                validation: {
+                    required: false
+                },
+                errorMessage: "",
+                valid: true,
+                touched: true
+            },
         },
 
         formIsValid: false,
@@ -188,34 +218,43 @@ class Signup extends Component {
         return (<div className="Body">
 
             <div className="jumbotron jumbotron-fluid signupPageCanvas">
-                <div className="container"><form onSubmit={this.submitHandler} className="signupBox">
-                    <h3 className="signupHeader">Sign up to opera reservation</h3>
-                    {this.state.errorMessage}
-                    {formElementsArray.map(formElement => (
-                        <Input
-                            key={formElement.id}
-                            elementType={formElement.config.elementType}
-                            elementConfig={formElement.config.elementConfig}
-                            value={formElement.config.value}
-                            invalid={!formElement.config.valid}
-                            errorMessage={formElement.config.errorMessage}
-                            shouldValidate={formElement.config.validation}
-                            touched={formElement.config.touched}
-                            autoFocus={formElement.config.autoFocus}
-                            changed={event => this.inputChangedHandler(event, formElement.id)}
-                            invalidEmail={this.state.signupForm.errorEmail}
-                            invalidScreenname={this.state.errorScreenname}
-                            invalidLenScreenname={this.state.signupForm.errorLenScreenname}
-                        />
-                    ))}
-                    <Button
-                        //className="btn btn-primary signupButton"
-                        //onClick={this.passwordHandler}
-                        disabled={!this.state.formIsValid}
-                    >
-                        Signup
-        </Button>
-                </form></div>
+                <div className="container">
+                    <form onSubmit={this.submitHandler} className="signupBox">
+                        <h3 className="signupHeader">Sign up to opera reservation</h3>
+                        {this.state.errorMessage}
+                        {formElementsArray.map(formElement => (
+                            <Input
+                                key={formElement.id}
+                                elementType={formElement.config.elementType}
+                                elementConfig={formElement.config.elementConfig}
+                                value={formElement.config.value}
+                                invalid={!formElement.config.valid}
+                                errorMessage={formElement.config.errorMessage}
+                                shouldValidate={formElement.config.validation}
+                                touched={formElement.config.touched}
+                                autoFocus={formElement.config.autoFocus}
+                                changed={event => this.inputChangedHandler(event, formElement.id)}
+                                invalidEmail={this.state.signupForm.errorEmail}
+                                invalidScreenname={this.state.errorScreenname}
+                                invalidLenScreenname={this.state.signupForm.errorLenScreenname}
+                            />
+                        ))}
+                        <div className="form-group" >
+                            <select required={true} className="InputElement">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+
+                            </select>
+                        </div>
+
+                        <Button
+                            //className="btn btn-primary signupButton"
+                            //onClick={this.passwordHandler}
+                            disabled={!this.state.formIsValid}
+                        >
+                            Signup
+                    </Button>
+                    </form></div>
                 <div className="downDivSignup">
                     <p className="text-sm-left downText">
                         Already have an account?{" "}
@@ -225,7 +264,7 @@ class Signup extends Component {
                     </p>
                 </div>
             </div>
-        </div>)
+        </div >)
     }
 }
 

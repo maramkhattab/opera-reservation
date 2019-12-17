@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import logo from './logo.svg';
 import './App.css';
 import Login from "./Containers/Login/Login";
@@ -9,7 +10,19 @@ import Cover from "./Components/UI/cover/cover";
 function App() {
   return (
     <div className="App">
-      <Cover />
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/login" component={Login} />
+
+          <Route exact path="/signup" component={Signup} />
+          {/* <Route path="/" exact component={LandingPage} />
+            
+            <Route exact path="/profile/:screenName" component={Profile} />
+            
+            <Route exact path="/editprofile" component={EditProfile} /> */}
+
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
