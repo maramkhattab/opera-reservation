@@ -15,6 +15,9 @@ function App() {
           <Route exact path="/login" component={Login} />
 
           <Route exact path="/signup" component={Signup} />
+
+          <Route path="/" exact component={Cover}/>
+          
           {/* <Route path="/" exact component={LandingPage} />
             
             <Route exact path="/profile/:screenName" component={Profile} />
