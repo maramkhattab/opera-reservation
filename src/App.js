@@ -7,7 +7,8 @@ import Signup from "./Containers/Signup/Signup";
 import EditProfile from "./Containers/EditProfile/EditProfile";
 import CreateEvent from "./Containers/CreateEvent/CreateEvent";
 import 'bootstrap/dist/css/bootstrap.css';
-
+import landingPage from "./Components/UI/landingPage/landingPage";
+import Cover from "./Components/UI/cover/cover";
 function App() {
   return (
     <div className="App">
