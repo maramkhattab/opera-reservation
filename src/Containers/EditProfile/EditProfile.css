@@ -31,7 +31,7 @@
     outline: none;
     background-color: white;
   }
-  .signupBox {
+  .editProfileBox {
     padding-left: 100px;
     padding-right: 100px;
     padding-top: 20px;
@@ -42,7 +42,7 @@
     font-size: 14px;
   }
   
-  .downDivSignup {
+  .downDiveditProfile {
     background-color: #f5f8fa;
     height: 34%;
   
@@ -51,12 +51,12 @@
     padding-bottom: 10px;
   }
   
-  .signupHeader {
+  .editProfileHeader {
     font-weight: bold;
     margin-bottom: 20px;
   }
   
-  .signupPageCanvas {
+  .editProfilePageCanvas {
     width: auto;
     max-width: 835px;
     margin: auto;
@@ -71,12 +71,12 @@
     padding-bottom: 0px;
   }
   @media (max-width: 900px) {
-    .signupBox {
+    .editProfileBox {
       padding-left: 0;
       padding-right: 0;
     }
   
-    .signupPageCanvas {
+    .editProfilePageCanvas {
       flex: auto;
       margin-left: 10px;
       margin-right: 10px;
