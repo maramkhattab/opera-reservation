@@ -16,6 +16,14 @@
     padding: 10px;
     box-sizing: border-box;
   }
+ 
+  .image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-bottom: 10 px;
+  } 
   .InputElement {
     outline: none;
     border: 1px solid #ccc;
@@ -31,7 +39,7 @@
     outline: none;
     background-color: white;
   }
-  .signupBox {
+  .createEventBox {
     padding-left: 100px;
     padding-right: 100px;
     padding-top: 20px;
@@ -42,7 +50,7 @@
     font-size: 14px;
   }
   
-  .downDivSignup {
+  .downDivcreateEvent {
     background-color: #f5f8fa;
     height: 34%;
   
@@ -51,12 +59,12 @@
     padding-bottom: 10px;
   }
   
-  .signupHeader {
+  .createEventHeader {
     font-weight: bold;
     margin-bottom: 20px;
   }
   
-  .signupPageCanvas {
+  .createEventPageCanvas {
     width: auto;
     max-width: 835px;
     margin: auto;
@@ -71,12 +79,12 @@
     padding-bottom: 0px;
   }
   @media (max-width: 900px) {
-    .signupBox {
+    .createEventBox {
       padding-left: 0;
       padding-right: 0;
     }
   
-    .signupPageCanvas {
+    .createEventPageCanvas {
       flex: auto;
       margin-left: 10px;
       margin-right: 10px;
