@@ -3,6 +3,7 @@ import React from "react";
 import "./cover.css";
 
 
+
 const Cover = props => (
     <body id="page-top">
     <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
@@ -19,10 +20,10 @@ const Cover = props => (
                     <a class="nav-link js-scroll-trigger" href="#services">Services</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#portfolio">Portfolio</a>
+                    <a class="nav-link js-scroll-trigger" href="/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+                    <a class="nav-link js-scroll-trigger" href="/signup">Signup</a>
                 </li>
                 </ul>
             </div>
