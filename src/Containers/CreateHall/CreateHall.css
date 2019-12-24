@@ -1,0 +1,101 @@
+.Body {
+    position: fixed;
+    padding: 0;
+    margin: 0;
+  
+    top: 0;
+    left: 0;
+  
+    width: 100%;
+    height: 100%;
+    background-color: #e6ecf0;
+    overflow: scroll;
+  }
+  select {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+ 
+  .image {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    padding-bottom: 10 px;
+  } 
+  .InputElement {
+    outline: none;
+    border: 1px solid #ccc;
+    background-color: white;
+    font: inherit;
+    padding: 6px 10px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .InputElement:focus {
+    outline: none;
+    background-color: white;
+  }
+  .createHallBox {
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 20px;
+    padding-bottom: 35px;
+  }
+  .Links {
+    color: #1c94e0;
+    font-size: 14px;
+  }
+  
+  .downDivcreateHall {
+    background-color: #f5f8fa;
+    height: 34%;
+  
+    padding-left: 115px;
+    padding-top: 15px;
+    padding-bottom: 10px;
+  }
+  
+  .createHallHeader {
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .createHallPageCanvas {
+    width: auto;
+    max-width: 835px;
+    margin: auto;
+    height: auto;
+    max-height: 802px;
+    background-color: white;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 0px;
+    font-family: "Roboto", sans-serif;
+    margin-top: 5px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  @media (max-width: 900px) {
+    .createHallBox {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  
+    .createHallPageCanvas {
+      flex: auto;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  
+    .downDiv {
+      background-color: #f5f8fa;
+      height: 34%;
+      padding-left: 50px;
+      padding-top: 20px;
+      padding-bottom: 5px;
+    }
+  }
+  
