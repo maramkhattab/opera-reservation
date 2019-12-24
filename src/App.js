@@ -7,6 +7,7 @@ import Signup from "./Containers/Signup/Signup";
 import EditProfile from "./Containers/EditProfile/EditProfile";
 import Profile from "./Containers/Profile/Profile";
 import Admin from "./Containers/Admin/Admin";
+import OperaManagement from "./Containers/OperaManagement/OperaManagement";
 import Reservation from "./Components/Reservation/Reservation";
 import CreateEvent from "./Containers/CreateEvent/CreateEvent";
 import CreateHall from "./Containers/CreateHall/CreateHall";
@@ -34,6 +35,7 @@ function App() {
 
           <Route exact path="/editprofile" component={EditProfile} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/management" component={OperaManagement} />
           <Route exact path="/Reservation" component={Reservation} />
           <Route exact path="/createevent" component={CreateEvent} />
           <Route exact path="/createhall" component={CreateHall} />
