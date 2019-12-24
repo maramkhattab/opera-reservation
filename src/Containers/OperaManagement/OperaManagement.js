@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import NavBar from "../../Components/NavBar/NavBar";
 
 import "./OperaManagement.css";
-import Reservation from "../../Components/Reservation/Reservation";
+import Event from "../../Components/Event/Event";
 import CreateEvent from "../CreateEvent/CreateEvent";
 import CreateHall from "../CreateHall/CreateHall";
 
@@ -16,7 +16,7 @@ class OperaManagement extends Component {
             <div className="profilecontainer ">
 
 
-                <Reservation eventName={"Omar Khairat's concert"} eventDate={"Date: 27/12/2019"} eventHall={"Hall number:5"} eventTicketsCount="Number of tickets: 3" />
+                <Event eventName={"Omar Khairat's concert"} eventDate={"Date: 27/12/2019"} eventHall={"Hall number:5"} eventDescription="bla ba bla" />
 
             </div>
         </div>)
@@ -49,8 +49,8 @@ class OperaManagement extends Component {
                         <div className="profilecontainer ">
 
 
-                            <Reservation eventName={"Omar Khairat's concert"} eventDate={"Date: 27/12/2019"} eventHall={"Hall number:5"} eventTicketsCount="Number of tickets: 3" />
-                            <Reservation eventName={"Omar Khairat's concert"} eventDate={"Date: 27/12/2019"} eventHall={"Hall number:5"} eventTicketsCount="Number of tickets: 3" />
+                            <Event eventName={"Omar Khairat's concert"} eventDate={"Date: 27/12/2019"} eventHall={"Hall number:5"} eventDescription="bla ba bla" />
+                            <Event eventName={"Omar Khairat's concert"} eventDate={"Date: 27/12/2019"} eventHall={"Hall number:5"} eventDescription="bla ba bla" />
 
                         </div>
                     </div>
