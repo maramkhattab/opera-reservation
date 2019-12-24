@@ -6,12 +6,11 @@ class BookingSeats extends Component {
 render() {
     
     return (
-        <body >
+        
+        <div  className="bodybooking">
         <h1>Theatre Seat Selection</h1>
-        <div class="container">
-    
+        <div class="containerr">
             <div class="w3ls-reg">
-
             <div class="inputForm">
                 <h2>fill the required details below and select your seats</h2>
                 <div class="mr_agilemain">
@@ -483,7 +482,7 @@ render() {
     </div>
     </div>
     </div>
-    </body>
+    </div>
 
         )
     }
