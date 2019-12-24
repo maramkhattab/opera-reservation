@@ -25,7 +25,7 @@ class Login extends Component {
                     nospace: true
                 },
                 errorMessage: "The screen name should start with a letter and with no spaces",
-                length:false,
+                length: false,
                 valid: false,
                 touched: false
             },
@@ -44,7 +44,7 @@ class Login extends Component {
                 errorMessage: "Password should be between 8 and 25 characters long",
                 valid: false,
                 touched: false,
-                length:false
+                length: false
             }
         },
         formIsValid: false,
@@ -111,27 +111,27 @@ class Login extends Component {
         }
         return (
             <div className="Body">
-                <AuthNavBar/>
+                <NavBar />
                 <div className="jumbotron jumbotron-fluid PageCanvas">
                     <div className="container">
                         <form className="loginBox" >
                             <h3 className="headerText">Log in to Opera house reservation portal</h3>
                             {this.state.errorMessage}
                             {formElementsArray.map(formElement => (
-                            <Input
-                            key={formElement.id}
-                            elementType={formElement.config.elementType}
-                            elementConfig={formElement.config.elementConfig}
-                            value={formElement.config.value}
-                            invalid={!formElement.config.valid}
-                            errorMessage={formElement.config.errorMessage}
-                            shouldValidate={formElement.config.validation}
-                            touched={formElement.config.touched}
-                            autoFocus={formElement.config.autoFocus}
-                            changed={event => this.inputChangedHandler(event, formElement.id)}
-                           
-                        />
-                    ))}
+                                <Input
+                                    key={formElement.id}
+                                    elementType={formElement.config.elementType}
+                                    elementConfig={formElement.config.elementConfig}
+                                    value={formElement.config.value}
+                                    invalid={!formElement.config.valid}
+                                    errorMessage={formElement.config.errorMessage}
+                                    shouldValidate={formElement.config.validation}
+                                    touched={formElement.config.touched}
+                                    autoFocus={formElement.config.autoFocus}
+                                    changed={event => this.inputChangedHandler(event, formElement.id)}
+
+                                />
+                            ))}
 
                             <button
                                 type="submit"
