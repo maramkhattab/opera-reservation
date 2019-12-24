@@ -6,6 +6,7 @@ import Login from "./Containers/Login/Login";
 import Signup from "./Containers/Signup/Signup";
 import EditProfile from "./Containers/EditProfile/EditProfile";
 import CreateEvent from "./Containers/CreateEvent/CreateEvent";
+import CreateHall from "./Containers/CreateHall/CreateHall";
 import 'bootstrap/dist/css/bootstrap.css';
 import LandingPage from "./Components/UI/LandingPage/LandingPage";
 
@@ -29,6 +30,7 @@ function App() {
 
           <Route exact path="/editprofile" component={EditProfile} />
           <Route exact path="/createevent" component={CreateEvent} />
+          <Route exact path="/createhall" component={CreateHall} />
 
         </Switch>
       </BrowserRouter>
