@@ -1,246 +1,54 @@
 import React from "react";
-import opera from "../../../assets/opera.jpg";
-//import PropTypes from 'prop-types';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowCircleDown,
-  faGrin,
-  faUserFriends
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faReact,
-  faDocker,
-  faNode,
-  faGithub,
-  faTwitter
-} from "@fortawesome/free-brands-svg-icons";
-//import { connect } from "react-redux";
-//import NavbarPic from "../../assets/images/Nova.png";
 
-import "./landingPage.css";
-const landingPage = props => {
-  return (
-    <div>
-      <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-light primary-color fixed-top navbarbg">
-          <div className="container-fluid">
-            { <a className="navbar-brand aclass" href="/">
-              <img
-                src={opera}
-                height="48px"
-                alt="pic"
-                className="NavBarLogoLanding"
-              />
-            </a> }
+import "./LandingPage.css";
 
-            <div className="collapse navbar-collapse" id="basicExampleNav">
-              <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                  <a className="nav-link aclass" href="/">
-                    Home
-                  </a>
+
+
+const LandingPage = props => (
+
+    <body id="page-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+             </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#about">About</a>
                 </li>
-
-                { <li className="nav-item">
-                  <a
-                    className="nav-link aclass"
-                    href="https://about.twitter.com/en_us.html"
-                  >
-                    About
-                  </a>
-                </li> }
-              </ul>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="/login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link js-scroll-trigger" href="/signup">Signup</a>
+                </li>
+                </ul>
             </div>
-            <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
-              <ul className="navbar-nav ml-auto">
-                <li className="nav-item">
-                  <a href="https://twitter.com/" className="aclass">
-                    <FontAwesomeIcon
-                      icon={faTwitter}
-                      className="navicon"
-                      style={{ color: "darkgrey", marginRight: "20px" }}
-                      size="2x"
-                    />
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a
-                    href="https://github.com/AyahElSamadoni/FrontEnd"
-                    className="aclass"
-                  >
-                    <FontAwesomeIcon
-                      icon={faGithub}
-                      className="navicon"
-                      style={{
-                        color: "darkgrey",
-                        marginRight: "20px",
-                        marginLeft: "0px"
-                      }}
-                      size="2x"
-                    />
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className=" nav-link aclass" href="/login">
-                    Login
-                  </a>
-                </li>
-
-                <li className="nav-item">
-                  <a href="/signup" className="aclass">
-                    <button type="button" className="btn btn-outline-success">
-                      Sign up
-                    </button>
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
-      <div className=" text-white tm-font-big bg">
-        <div className="tm-next tm-intro-next">
-          <a href="#introduction" className="text-center tm-down-arrow-link">
-            <FontAwesomeIcon
-              icon={faArrowCircleDown}
-              size="3x"
-              style={{ color: "#3496d8", marginBottom: "30px" }}
-            />
-          </a>
         </div>
-      </div>
-      <section className=" tm-section-pad-top">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6">
-              <img src={opera} alt="" className="img-fluid tm-intro-img" />
-            </div>
-            <div className="col-lg-6">
-              <div className="tm-intro-text-container" id="introduction">
-                <h2 className="tm-text-primary mb-4 tm-section-title">
-                  Introduction
-                </h2>
-                <p className="mb-4 tm-intro-text">This is eNovate Website.</p>
-                <p className="mb-5 tm-intro-text">
-                  Connect with your friends immediatelly and enjoy one of the
-                  most pleasent and user-friendly experiences you'd ever have in
-                  your lifetime!
-                </p>
-              </div>
-            </div>
-          </div>
+    </nav>
+
+
+
+    <header class="masthead">
+        <div class="container h-100">
+        <div class="row h-100 align-items-center justify-content-center text-center">
+            <div class="col-lg-10 align-self-end">
+                <h1 class="text-uppercase text-white font-weight-bold">Welcome to Cairo Opera House Portal </h1>
+                <hr class="divider my-4"/>
+                <div class="row h-100 align-items-center justify-content-center text-center">
+          <p class="text-white-75 font-weight-light mb-5">Cairo opera house is the main performing arts venue in the Egyptian capital and home to most of Egypt's finest musical groups, it is located on the southern portion of Gezira Island in the Nile River, in the Zamalek district near downtown Cairo</p>
+          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">View Events</a>
         </div>
-
-        <div
-          className="row tm-section-pad-top"
-          style={{ paddingBottom: "60px" }}
-        >
-          <div className="col-lg-4 text-center">
-            <FontAwesomeIcon
-              icon={faReact}
-              size="6x"
-              style={{
-                color: "#3496d8",
-                marginBottom: "30px",
-                textAlign: "center"
-              }}
-            />
-            <h4 className="text-center tm-text-primary mb-4"> 100% Reactful</h4>
-            <div className="container">
-              <p>
-                Using React Library as our main frontend for quick development
-                and little to no down-time.
-              </p>
             </div>
-          </div>
-
-          <div className="col-lg-4 text-center">
-            <FontAwesomeIcon
-              icon={faNode}
-              size="6x"
-              style={{ color: "#3496d8", marginBottom: "30px" }}
-            />
-            <h4 className="text-center tm-text-primary mb-4">NodeJS</h4>
-            <div className="container">
-              <p>
-                With NodeJS as our main Backend, Enjoy one of the quickest and
-                smoothest experiences ever!
-              </p>
-            </div>
-          </div>
-
-          <div className="col-lg-4 text-center">
-            <FontAwesomeIcon
-              icon={faDocker}
-              size="6x"
-              style={{ color: "#3496d8", marginBottom: "30px" }}
-            />
-            <h4 className="text-center tm-text-primary mb-4">Docker</h4>
-            <div className="container">
-              <p>
-                Secure, Powerful environment for the least downtime possible and
-                the best user experience possible!
-              </p>
-            </div>
-          </div>
+         </div>   
         </div>
-      </section>
-      <section
-        className=" tm-section-pad-top bg2"
-        style={{ paddingTop: "50px", paddingBottom: "50px" }}
-      >
-        <div className="container-fluid">
-          <div className="row">
-            <div className="col-sm text-center">
-              <FontAwesomeIcon
-                icon={faGrin}
-                size="6x"
-                style={{ color: "white", marginBottom: "30px" }}
-              />
-              <h1 style={{ display: "block" }}>Totally Moderated Content</h1>
-            </div>
+    </header>
+    </body>
+ 
+);
 
-            <div className="col-sm text-center">
-              <FontAwesomeIcon
-                icon={faUserFriends}
-                size="6x"
-                style={{ color: "white", marginBottom: "30px" }}
-              />
-              <h1 style={{ display: "block" }}>Super Friendly Community!</h1>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        className=" tm-section-pad-top  text-center"
-        style={{ paddingTop: "60px", paddingBottom: "30px" }}
-      >
-        <h1
-          className="text-center"
-          style={{ paddingBottom: "3px", color: "#3496d8" }}
-        >
-          No fees needed at all!
-        </h1>
-        <a href="/signup">
-          <button
-            type="button"
-            className="btn btn-light btn-lg"
-            style={{
-              paddingTop: "3px",
-              marginBottom: "20px",
-              color: "White",
-              backgroundColor: "#3496d8"
-            }}
-          >
-            Join us now!
-          </button>
-        </a>
-      </section>
-    </div>
-  );
-};
-export default landingPage;
-
-
-
+export default LandingPage;
