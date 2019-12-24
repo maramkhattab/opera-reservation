@@ -10,20 +10,18 @@ class Reservation extends React.Component {
     render() {
 
         return (
-            <div className="container">
-                <div className="row smallDiv">
-                    <div className="col-md-12">Omar Khairat</div>
-                </div>
-                <div className="row">
-                    <div className="col-md-4 largeDiv"><img src="C:\Users\Maram\Desktop\Barcelona\IMG_1492.JPG" /></div>
-                    <div className="col-md-8">
-                        <div class="smallDiv" >Date</div>
-                        <div class="smallDiv" >Hall number</div>
-                        <div class="smallDiv" > number of tickets</div>
+            <div className="container-fluid mt-4">
+                <div className="card" style={{ textAlign: "center", width: "inherits", maxHeight: "72rem", minHeight: "5rem", alignContent: "center" }}>
+                    <div className="card-body" style={{ textAlign: "center" }}>
+                        <p classNAme="card-text"><img style={{ margin: "0px", textAlign: "center", display: "inline-block" }} src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" /></p>
+                        <h4 className="card-title"> {this.props.eventName} </h4>
+                        <p className="card-text"> {this.props.eventDate}</p>
+                        <p className="card-text">{this.props.eventHall}</p>
+                        <p className="card-text"> {this.props.eventTicketsCount}</p>
                     </div>
                 </div>
+            </div >
 
-            </div>
 
         );
     }

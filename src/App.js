@@ -10,7 +10,7 @@ import Reservation from "./Components/Reservation/Reservation";
 import CreateEvent from "./Containers/CreateEvent/CreateEvent";
 import CreateHall from "./Containers/CreateHall/CreateHall";
 import 'bootstrap/dist/css/bootstrap.css';
-import LandingPage from "./Components/UI/LandingPage/LandingPage";
+import LandingPage from "./Components/UI/landingPage/landingPage";
 
 import BookingSeats from "./Containers/BookingSeats/BookingSeats";
 
@@ -23,9 +23,9 @@ function App() {
 
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/bookingseats" component={BookingSeats} />
-          <Route path="/" exact component={LandingPage}/>
-          
-          
+          <Route path="/" exact component={LandingPage} />
+
+
           {/* <Route path="/" exact component={LandingPage} />
             
             <Route exact path="/profile/:screenName" component={Profile} /> */}
