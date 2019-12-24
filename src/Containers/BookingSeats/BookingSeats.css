@@ -369,6 +369,7 @@ input{
     margin-top: 10px;
     color: #fff;
 }
+/*
 button {
     background: #f5f5f5;
     border: none;
@@ -381,7 +382,7 @@ button {
     font-family: 'Source Sans Pro', sans-serif;
     cursor: pointer;
 }
-
+*/
 ul.seat_w3ls {
     margin: 2em 0;
 }

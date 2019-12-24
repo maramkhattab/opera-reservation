@@ -10,6 +10,14 @@
     height: 100%;
     background-color: #e6ecf0;
 }
+
+.loginButton{
+    border-radius: 50px;
+    background-color: #1da1f2;
+    border-color: #1da1f2;
+    width: 80px;
+    margin-right: 20px;
+}
 img {
     display: block;
   }

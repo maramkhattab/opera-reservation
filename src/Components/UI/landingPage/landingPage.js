@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./landingPage.css";
+import "./LandingPage.css";
 
 
 

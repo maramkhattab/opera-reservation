@@ -6,11 +6,12 @@ import Login from "./Containers/Login/Login";
 import Signup from "./Containers/Signup/Signup";
 import EditProfile from "./Containers/EditProfile/EditProfile";
 import Profile from "./Containers/Profile/Profile";
+import Admin from "./Containers/Admin/Admin";
 import Reservation from "./Components/Reservation/Reservation";
 import CreateEvent from "./Containers/CreateEvent/CreateEvent";
 import CreateHall from "./Containers/CreateHall/CreateHall";
 import 'bootstrap/dist/css/bootstrap.css';
-import LandingPage from "./Components/UI/landingPage/landingPage";
+import LandingPage from "./Components/UI/LandingPage/LandingPage";
 
 import BookingSeats from "./Containers/BookingSeats/BookingSeats";
 
@@ -23,6 +24,7 @@ function App() {
 
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/bookingseats" component={BookingSeats} />
+          <Route exact path="/admin" component={Admin} />
           <Route path="/" exact component={LandingPage} />
 
 
