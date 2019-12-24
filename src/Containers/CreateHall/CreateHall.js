@@ -151,43 +151,46 @@ class CreateHall extends Component {
                 config: this.state.createHallForm[key]
             });
         }
-        return (<div className="Body">
+        return (
+            // <div className="Body">
 
-            <div className="jumbotron jumbotron-fluid createHallPageCanvas">
-                <div className="container">
-                    <form onSubmit={this.submitHandler} className="createHallBox">
-                        <h3 className="createHallHeader">Create a new hall</h3>
-                        {this.state.errorMessage}
-                        {formElementsArray.map(formElement => (
-                            <Input
-                                key={formElement.id}
-                                elementType={formElement.config.elementType}
-                                elementConfig={formElement.config.elementConfig}
-                                value={formElement.config.value}
-                                invalid={!formElement.config.valid}
-                                errorMessage={formElement.config.errorMessage}
-                                shouldValidate={formElement.config.validation}
-                                touched={formElement.config.touched}
-                                autoFocus={formElement.config.autoFocus}
-                                changed={event => this.inputChangedHandler(event, formElement.id)}
-                                invalidEmail={this.state.createHallForm.errorEmail}
-                                invalidScreenname={this.state.errorScreenname}
-                                invalidLenScreenname={this.state.createHallForm.errorLenScreenname}
-                            />
-                        ))}
+            //     <div className="jumbotron jumbotron-fluid createHallPageCanvas">
+            //         <div className="container">
+            <form onSubmit={this.submitHandler} className="createHallBox">
+                <h3 className="createHallHeader">Create a new hall</h3>
+                {this.state.errorMessage}
+                {formElementsArray.map(formElement => (
+                    <Input
+                        key={formElement.id}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        invalid={!formElement.config.valid}
+                        errorMessage={formElement.config.errorMessage}
+                        shouldValidate={formElement.config.validation}
+                        touched={formElement.config.touched}
+                        autoFocus={formElement.config.autoFocus}
+                        changed={event => this.inputChangedHandler(event, formElement.id)}
+                        invalidEmail={this.state.createHallForm.errorEmail}
+                        invalidScreenname={this.state.errorScreenname}
+                        invalidLenScreenname={this.state.createHallForm.errorLenScreenname}
+                    />
+                ))}
 
 
-                        <Button
-                            //className="btn btn-primary createHallButton"
-                            //onClick={this.passwordHandler}
-                            disabled={!this.state.formIsValid}
-                        >
-                            Create
+                <Button
+                    //className="btn btn-primary createHallButton"
+                    //onClick={this.passwordHandler}
+                    disabled={!this.state.formIsValid}
+                >
+                    Create
                     </Button>
-                    </form></div>
+            </form>
+            //             </div>
 
-            </div>
-        </div >)
+            //     </div>
+            // </div >
+        )
     }
 }
 

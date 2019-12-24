@@ -150,62 +150,65 @@ class CreateEvent extends Component {
                 config: this.state.createEventForm[key]
             });
         }
-        return (<div className="Body">
+        return (
+            // <div className="Body">
 
-            <div className="jumbotron jumbotron-fluid createEventPageCanvas">
-                <div className="container">
-                    <form onSubmit={this.submitHandler} className="createEventBox">
-                        <h3 className="createEventHeader">Create a new event</h3>
-                        {this.state.errorMessage}
-                        {formElementsArray.map(formElement => (
-                            <Input
-                                key={formElement.id}
-                                elementType={formElement.config.elementType}
-                                elementConfig={formElement.config.elementConfig}
-                                value={formElement.config.value}
-                                invalid={!formElement.config.valid}
-                                errorMessage={formElement.config.errorMessage}
-                                shouldValidate={formElement.config.validation}
-                                touched={formElement.config.touched}
-                                autoFocus={formElement.config.autoFocus}
-                                changed={event => this.inputChangedHandler(event, formElement.id)}
-                                invalidEmail={this.state.createEventForm.errorEmail}
-                                invalidScreenname={this.state.errorScreenname}
-                                invalidLenScreenname={this.state.createEventForm.errorLenScreenname}
-                            />
-                        ))}
-                        <div className="form-group" >
-                            <textarea rows="3" cols="25" placeholder="Description" className="InputElement" ></textarea>
-                        </div>
+            //     <div className="jumbotron jumbotron-fluid createEventPageCanvas">
+            //         <div className="container">
+            <form onSubmit={this.submitHandler} className="createEventBox">
+                <h3 className="createEventHeader">Create a new event</h3>
+                {this.state.errorMessage}
+                {formElementsArray.map(formElement => (
+                    <Input
+                        key={formElement.id}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        invalid={!formElement.config.valid}
+                        errorMessage={formElement.config.errorMessage}
+                        shouldValidate={formElement.config.validation}
+                        touched={formElement.config.touched}
+                        autoFocus={formElement.config.autoFocus}
+                        changed={event => this.inputChangedHandler(event, formElement.id)}
+                        invalidEmail={this.state.createEventForm.errorEmail}
+                        invalidScreenname={this.state.errorScreenname}
+                        invalidLenScreenname={this.state.createEventForm.errorLenScreenname}
+                    />
+                ))}
+                <div className="form-group" >
+                    <textarea rows="3" cols="25" placeholder="Description" className="InputElement" ></textarea>
+                </div>
 
-                        <div className="form-group">
-                            <img src={this.state.imagePreview} className="image " />
-                        </div>
-                        <div className="form-group limitwidth center">
-                            <div className="custom-file ">
-                                <input
-                                    type="file"
-                                    className="custom-file-input InputElement"
-                                    id="inputGroupFile01"
-                                    aria-describedby="inputGroupFileAddon01"
-                                    onChange={e => this.onChange(e)}
-                                />
-                                <label className="custom-file-label" htmlFor="inputGroupFile01">
-                                    Event poster
+                <div className="form-group">
+                    <img src={this.state.imagePreview} className="image " />
+                </div>
+                <div className="form-group limitwidth center">
+                    <div className="custom-file ">
+                        <input
+                            type="file"
+                            className="custom-file-input InputElement"
+                            id="inputGroupFile01"
+                            aria-describedby="inputGroupFileAddon01"
+                            onChange={e => this.onChange(e)}
+                        />
+                        <label className="custom-file-label" htmlFor="inputGroupFile01">
+                            Event poster
                                 </label>
-                            </div>
-                        </div>
-                        <Button
-                            //className="btn btn-primary createEventButton"
-                            //onClick={this.passwordHandler}
-                            disabled={!this.state.formIsValid}
-                        >
-                            Create
+                    </div>
+                </div>
+                <Button
+                    //className="btn btn-primary createEventButton"
+                    //onClick={this.passwordHandler}
+                    disabled={!this.state.formIsValid}
+                >
+                    Create
                     </Button>
-                    </form></div>
+            </form>
+            //             </div>
 
-            </div>
-        </div >)
+            //     </div>
+            // </div >
+        )
     }
 }
 
