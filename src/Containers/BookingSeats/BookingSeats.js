@@ -8,11 +8,11 @@ render() {
     return (
         
         <div  className="bodybooking">
-        <h1>Theatre Seat Selection</h1>
+        <div className="h11">Theatre Seat Selection</div>
         <div class="containerr">
             <div class="w3ls-reg">
             <div class="inputForm">
-                <h2>fill the required details below and select your seats</h2>
+                <div className="h22">fill the required details below and select your seats</div>
                 <div class="mr_agilemain">
                     <div class="agileits-left">
                         <label> Credit Card Number
