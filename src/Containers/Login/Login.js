@@ -4,6 +4,8 @@ import React, { Component } from 'react'
 import "./login.css";
 import Button from "../../Components/UI/button//button";
 import Input from "../../Components/UI/Input/Input";
+import AuthNavBar from "../../Components/AuthNav/AuthNavBar";
+import NavBar from "../../Components/NavBar/NavBar";
 class Login extends Component {
     state = {
         loginForm: {
@@ -109,7 +111,7 @@ class Login extends Component {
         }
         return (
             <div className="Body">
-
+                <AuthNavBar/>
                 <div className="jumbotron jumbotron-fluid PageCanvas">
                     <div className="container">
                         <form className="loginBox" >

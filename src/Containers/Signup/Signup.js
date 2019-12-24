@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Signup.css";
 import Button from "../../Components/UI/button//button";
 import Input from "../../Components/UI/Input/Input";
+import AuthNavBar from "../../Components/AuthNav/AuthNavBar";
 class Signup extends Component {
 
     state = {
@@ -216,7 +217,7 @@ class Signup extends Component {
             });
         }
         return (<div className="Body">
-
+                 <AuthNavBar/>
             <div className="jumbotron jumbotron-fluid signupPageCanvas">
                 <div className="container">
                     <form onSubmit={this.submitHandler} className="signupBox">
