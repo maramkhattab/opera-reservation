@@ -146,6 +146,9 @@ class Login extends Component {
                 else if (response.data.role == 2) {
                     this.props.history.push({ pathname: "/management" })
                 }
+                else if (response.data.role == 0) {
+                    this.props.history.push({ pathname: "/admin" })
+                }
                 ;
             })
             .catch(function (error) {
