@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-//import { connect } from "react-redux";
+//imp`ort { connect } from "react-redux";
 import NavBar from "../../Components/NavBar/NavBar";
-
+import axios from "../../axios-users"
 import "./Profile.css";
 import Reservation from "../../Components/Reservation/Reservation";
 import EditProfile from "../EditProfile/EditProfile";
@@ -9,35 +9,51 @@ import EditProfile from "../EditProfile/EditProfile";
 
 
 
-class Profile extends Component {
+class Profile extends React.Component {
+
+
     state = {
         pageContent: (<div className="container widthadjust">
             <div className="profilecontainer ">
 
 
-                <Reservation eventName={"Omar Khairat's concert"} eventDate={"27/12/2019"} eventTime={"19:00"} eventHall={"5"} eventTicketsCount=" 3" />
+                <Reservation eventName={"Omar Khairat's concert"} eventDate={"12-29-2019"} eventTime={"19:00"} eventHall={"5"} eventTicketsCount=" 3" />
 
             </div>
         </div>)
     }
     sidebarHandler = (event, choice) => {
         if (choice == "edit") {
-            var pageContent = (<div className="container widthadjust">
-                <div className="profilecontainer ">
+            var token = localStorage.getItem("jwtToken");
+            // var jwt = require('jsonwebtoken');
+            // var decode = jwt.decode(token)
+            console.log(token)
+            axios({
+                method: 'get',
+                url: '/api/users/getUser',
+                headers: { Authorization: token }
+            })
+                .then(response => {
+                    var user = response.data;
+                    console.log(user)
+                    var pageContent = (<div className="container widthadjust">
+                        <div className="profilecontainer ">
+                            <EditProfile city={user.city} gender={user.gender} firstname={user.firstname} lastname={user.lastname} address={user.address} birthdate={user.birthdate} />
+                        </div>
+                    </div>)
+                    this.setState({ pageContent: pageContent });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
 
 
-                    <EditProfile />
-                </div>
-            </div>)
-            this.setState({ pageContent: pageContent })
         }
         else if (choice == "reservation") {
             var pageContent = (
                 <div className="container widthadjust">
                     <div className="profilecontainer ">
-
-
-                        <Reservation eventName={"Omar Khairat's concert"} eventDate={"Date: 27/12/2019"} eventHall={"Hall number:5"} eventTicketsCount="Number of tickets: 3" />
+                        <Reservation eventName={"Omar Khairat's concert"} eventDate={"27/12/2019"} eventHall={"5"} eventTicketsCount=" 3" />
 
                     </div>
                 </div>
@@ -46,7 +62,9 @@ class Profile extends Component {
             this.setState({ pageContent: pageContent })
         }
 
+
     }
+
     render() {
         return (
             <div className="Body">

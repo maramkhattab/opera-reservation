@@ -10,9 +10,12 @@ class Reservation extends React.Component {
 
     }
     componentWillMount() {
-        var eventDay = new Date(this.props.eventDate);
+        var eventDay = Date.parse(this.props.eventDate);
         console.log(eventDay)
-        var diffDays = 5;
+        var today = new Date()
+        var diffTime = Math.abs(eventDay - today);
+        var diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        console.log(diffDays)
         if (diffDays > 3) {
             var cancelButton = (<p className="card-text"><button className="btn btn-danger"> Cancel reservation</button></p>);
             this.setState({ cancelButton: cancelButton })
