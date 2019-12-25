@@ -1,9 +1,28 @@
 import React from "react";
 
 class Users extends React.Component {
-    constructor(props) {
-        super(props);
+  
+    state = {
+        pageContent: (<div>
+            
+        </div>)
+    }
+    
+    clickHandler = (event, choice) => {
+        console.log("m");
+    var pageContent = (
+                
+              
+        <div className="form-group" >
+        <select required={true} className="InputElement">
+            <option value="Customer">Customer</option>
+            <option value="Opera Management">Opera Management</option>
 
+        </select>
+        </div>
+               
+           )
+            this.setState({ pageContent: pageContent })
 
     }
 
@@ -16,6 +35,22 @@ class Users extends React.Component {
                         <h4 className="card-title"> {this.props.Username} </h4>
                         <p className="card-text"> {this.props.Email}</p>
                         <p className="card-text"> {this.props.Address}</p>
+                        <p className="card-text"> {this.props.Authority}</p>
+                        <button
+                                type="submit"
+                                className="btn btn-primary logButton"
+                            >
+                                Delete
+                             </button>
+                            
+                             <button onClick={event => this.clickHandler()}
+                                className="btn btn-primary logButton"
+                            >
+                            Authority
+                             </button>
+                             <div>
+                                 {this.state.pageContent}
+                             </div>
                     </div>
                 </div>
             </div >

@@ -17,7 +17,7 @@ class Admin extends Component {
             <div className="profilecontainer ">
 
 
-                <Users Username={"Mirna Hatem"} Email={"mirnahatem@gmail.com"} ddress={"El Sheikh Zayed"} />
+                <Users Username={"Mirna Hatem"} Email={"mirnahatem@gmail.com"} address={"El Sheikh Zayed"} Authority={"Customer"} />
 
             </div>
         </div>)
@@ -36,7 +36,7 @@ class Admin extends Component {
             var pageContent = (
                 <div className="container widthadjust">
                     <div className="profilecontainer ">
-                    <Users Username={"Mirna Hatem"} Email={"mirnahatem@gmail.com"}  Address={"El Sheikh Zayed"} />
+                    <Users Username={"Mirna Hatem"} Email={"mirnahatem@gmail.com"}  Address={"El Sheikh Zayed"} Authority={"Customer"}/>
                     </div>
                 </div>
 
