@@ -37,6 +37,7 @@ class Admin extends Component {
                 <div className="container widthadjust">
                     <div className="profilecontainer ">
                     <Users Username={"Mirna Hatem"} Email={"mirnahatem@gmail.com"}  Address={"El Sheikh Zayed"} Authority={"Customer"}/>
+                    
                     </div>
                 </div>
 
