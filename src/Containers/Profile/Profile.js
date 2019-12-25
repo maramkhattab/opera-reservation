@@ -11,32 +11,9 @@ import EditProfile from "../EditProfile/EditProfile";
 
 class Profile extends React.Component {
     componentDidMount() {
-   
-    
-    
-        const user = {
 
-        };
+    }
 
-        var body = {
-       
-        }
-
-        axios({
-            method: 'post',
-            url: '/api/users/login',
-            data: body
-        })
-            .then(function (response) {
-               
-                console.log(response);
-               
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-      }
-   
     state = {
         pageContent: (<div className="container widthadjust">
             <div className="profilecontainer ">
@@ -49,11 +26,13 @@ class Profile extends React.Component {
     }
     sidebarHandler = (event, choice) => {
         if (choice == "edit") {
+            var token = localStorage.getItem("jwtToken");
+            var jwt = require('jsonwebtoken');
+            var decode = jwt.decode(token)
+            console.log(decode)
             var pageContent = (<div className="container widthadjust">
                 <div className="profilecontainer ">
-
-
-                    <EditProfile />
+                    <EditProfile city={"Madrid"} gender={1} />
                 </div>
             </div>)
             this.setState({ pageContent: pageContent })
@@ -62,8 +41,6 @@ class Profile extends React.Component {
             var pageContent = (
                 <div className="container widthadjust">
                     <div className="profilecontainer ">
-
-
                         <Reservation eventName={"Omar Khairat's concert"} eventDate={"Date: 27/12/2019"} eventHall={"Hall number:5"} eventTicketsCount="Number of tickets: 3" />
 
                     </div>

@@ -46,7 +46,7 @@ class EditProfile extends Component {
                     type: "text",
                     placeholder: "First Name"
                 },
-                value: "",
+                value: this.props.firstname,
                 validation: {
                     required: false,
                     maxLength: 15
@@ -61,7 +61,7 @@ class EditProfile extends Component {
                     type: "text",
                     placeholder: "Last Name"
                 },
-                value: "",
+                value: this.props.lasttname,
                 validation: {
                     required: false,
                     maxLength: 15
@@ -76,7 +76,7 @@ class EditProfile extends Component {
                     type: "date",
                     placeholder: "Birth date"
                 },
-                value: "",
+                value: this.props.birthdate,
                 validation: {
                     required: false
                 },
@@ -90,7 +90,7 @@ class EditProfile extends Component {
                     type: "text",
                     placeholder: "City"
                 },
-                value: "",
+                value: this.props.city,
                 validation: {
                     required: false
                 },
@@ -104,7 +104,7 @@ class EditProfile extends Component {
                     type: "text",
                     placeholder: "Address"
                 },
-                value: "",
+                value: this.props.Address,
                 validation: {
                     required: false
                 },
@@ -211,8 +211,8 @@ class EditProfile extends Component {
                 ))}
                 <div className="form-group" >
                     <select required={true} className="InputElement">
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option value="Male" selected={!this.props.gender}>Male</option>
+                        <option value="Female" selected={this.props.gender} > Female</option>
 
                     </select>
                 </div>
