@@ -134,15 +134,18 @@ class Login extends Component {
             url: '/api/users/login',
             data: body
         })
-            .then(function (response) {
+            .then(response=> {
                 const token = response.data.token;
                 var jwt = require('jsonwebtoken');
                 var decode1 = jwt.decode(token)
+                var role=decode1.role
                 localStorage.setItem("jwtToken", token);
                 console.log(response);
-                console.log(decode1.role)
-                this.props.history.push({ pathname: "/Verify" },
-            { toke:token })
+                if (role==1)
+                {this.props.history.push({ pathname: "/profile" })}
+                else if (role==2){
+                    this.props.history.push({ pathname: "/management" }) 
+                }
             ;
             })
             .catch(function (error) {
@@ -227,4 +230,4 @@ class Login extends Component {
 // }
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Login)
-export default Login
+export default withRouter(Login)

@@ -11,17 +11,15 @@ import EditProfile from "../EditProfile/EditProfile";
 
 class Profile extends React.Component {
     componentDidMount() {
-    var jwt = require('jsonwebtoken');
-    var decode1 = jwt.decode(this.props.location.state.token)  
-        
-
+   
+    
+    
         const user = {
 
         };
 
         var body = {
-           token: this.props.location.state.token
-
+       
         }
 
         axios({
