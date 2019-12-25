@@ -27,18 +27,27 @@ class Admin extends Component {
             console.log(token)
             axios({
                 method: 'get',
-                url: '/api/users/getUser',
+                url: '/api/request/getAllRequests',
                 headers: { Authorization: token }
             })
                 .then(response => {
-                    var user = response.data;
-                    console.log(user)
+
+
+                    console.log(response.data)
                     var pageContent = (
                         <div className="container widthadjust">
                             <div className="profilecontainer ">
-                                <Requests Username={user.username} Email={user.email} Authority={user.role} />
+                                {response.data.map(user => (
+
+                                    <Requests key={user.id} Username="mirna" Email={user.email} Authority={user.role} />
+
+                                ))}
+
+
                             </div>
-                        </div>)
+                        </div>
+
+                    )
                     this.setState({ pageContent: pageContent })
                 })
                 .catch(function (error) {
