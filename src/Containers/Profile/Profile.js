@@ -10,9 +10,7 @@ import EditProfile from "../EditProfile/EditProfile";
 
 
 class Profile extends React.Component {
-    componentDidMount() {
 
-    }
 
     state = {
         pageContent: (<div className="container widthadjust">
@@ -43,7 +41,7 @@ class Profile extends React.Component {
                             <EditProfile city={user.city} gender={user.gender} firstname={user.firstname} lastname={user.lastname} address={user.address} birthdate={user.birthdate} />
                         </div>
                     </div>)
-                    this.setState({ pageContent: pageContent })
+                    this.setState({ pageContent: pageContent });
                 })
                 .catch(function (error) {
                     console.log(error);
@@ -64,7 +62,9 @@ class Profile extends React.Component {
             this.setState({ pageContent: pageContent })
         }
 
+
     }
+
     render() {
         return (
             <div className="Body">
