@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./CreateEvent.css";
+import axios from "../../axios-users"
 import Button from "../../Components/UI/button//button";
 import Input from "../../Components/UI/Input/Input";
 class CreateEvent extends Component {
@@ -142,6 +143,53 @@ class CreateEvent extends Component {
         }
         console.log(reader.result);
     }
+
+    submitHandler = event => {
+
+        event.preventDefault();
+        this.setState({ loading: true });
+        const formData = {};
+        for (let formElementIdentifier in this.state.signupForm) {
+            formData[formElementIdentifier] = this.state.signupForm[
+                formElementIdentifier
+            ].value;
+        }
+
+        const user = {
+
+        };
+
+        var body = {
+            name:this.state.createEventForm.eventname.value.toString(),
+            description:"hahahahahah",
+            date:this.state.createEventForm.eventdate.value.toString(),
+            starttime:10,
+            endtime:11,
+            hallnumber:this.state.createEventForm.hall.value
+
+        }
+
+        axios({
+            method: 'post',
+            url: 'api/events/createEvent',
+            data: body
+        })
+            .then(function (response) {
+               
+                console.log(response);
+            
+               
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+
+    };
+
+
+
     render() {
         const formElementsArray = [];
         for (let key in this.state.createEventForm) {

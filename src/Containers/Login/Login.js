@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react'
+import { withRouter } from "react-router-dom";
 import axios from "../../axios-users"
 // import { connect } from 'react-redux'
 import "./login.css";
@@ -8,55 +9,59 @@ import Input from "../../Components/UI/Input/Input";
 import AuthNavBar from "../../Components/AuthNav/AuthNavBar";
 import NavBar from "../../Components/NavBar/NavBar";
 class Login extends Component {
-    state = {
-        loginForm: {
-
-            username: {
-                elementType: "input",
-                elementConfig: {
-                    type: "text",
-                    placeholder: "UserName"
+    constructor(props){
+        super(props);
+        this.state = {
+            loginForm: {
+    
+                username: {
+                    elementType: "input",
+                    elementConfig: {
+                        type: "text",
+                        placeholder: "UserName"
+                    },
+                    value: "",
+                    validation: {
+                        required: true,
+                        minLength: 5,
+                        maxLength: 15,
+                        startLetter: true,
+                        nospace: true
+                    },
+                    errorMessage: "The screen name should start with a letter and with no spaces",
+                    length:false,
+                    valid: false,
+                    touched: false
                 },
-                value: "",
-                validation: {
-                    required: true,
-                    minLength: 5,
-                    maxLength: 15,
-                    startLetter: true,
-                    nospace: true
-                },
-                errorMessage: "The screen name should start with a letter and with no spaces",
-                length:false,
-                valid: false,
-                touched: false
+                password: {
+                    elementType: "input",
+                    elementConfig: {
+                        type: "password",
+                        placeholder: "Password"
+                    },
+                    value: "",
+                    validation: {
+                        required: true,
+                        minLength: 8,
+                        maxLength: 25
+                    },
+                    errorMessage: "Password should be between 8 and 25 characters long",
+                    valid: false,
+                    touched: false,
+                    length:false
+                }
             },
-            password: {
-                elementType: "input",
-                elementConfig: {
-                    type: "password",
-                    placeholder: "Password"
-                },
-                value: "",
-                validation: {
-                    required: true,
-                    minLength: 8,
-                    maxLength: 25
-                },
-                errorMessage: "Password should be between 8 and 25 characters long",
-                valid: false,
-                touched: false,
-                length:false
-            }
-        },
-        formIsValid: false,
-        loading: false,
-        error: {},
-        token: "",
-        errorEmail: false,
-        errorScreenname: false,
-        errorLenScreenname: false,
-        errorMessage: null
-    };
+            formIsValid: false,
+            loading: false,
+            error: {},
+            token: "",
+            errorEmail: false,
+            errorScreenname: false,
+            errorLenScreenname: false,
+            errorMessage: null
+        };
+    }
+    
     inputChangedHandler = (event, inputIdentifier) => {
         const updatedloginForm = {
             ...this.state.loginForm
@@ -130,10 +135,15 @@ class Login extends Component {
             data: body
         })
             .then(function (response) {
+                const token = response.data.token;
+                var jwt = require('jsonwebtoken');
+                var decode1 = jwt.decode(token)
+                localStorage.setItem("jwtToken", token);
                 console.log(response);
-                this.props.history.push(
-                    "/profile/"
-                );
+                console.log(decode1.role)
+                this.props.history.push({ pathname: "/Verify" },
+            { toke:token })
+            ;
             })
             .catch(function (error) {
                 console.log(error);

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-//import { connect } from "react-redux";
+//imp`ort { connect } from "react-redux";
 import NavBar from "../../Components/NavBar/NavBar";
-
+import axios from "../../axios-users"
 import "./Profile.css";
 import Reservation from "../../Components/Reservation/Reservation";
 import EditProfile from "../EditProfile/EditProfile";
@@ -9,7 +9,36 @@ import EditProfile from "../EditProfile/EditProfile";
 
 
 
-class Profile extends Component {
+class Profile extends React.Component {
+    componentDidMount() {
+    var jwt = require('jsonwebtoken');
+    var decode1 = jwt.decode(this.props.location.state.token)  
+        
+
+        const user = {
+
+        };
+
+        var body = {
+           token: this.props.location.state.token
+
+        }
+
+        axios({
+            method: 'post',
+            url: '/api/users/login',
+            data: body
+        })
+            .then(function (response) {
+               
+                console.log(response);
+               
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+      }
+   
     state = {
         pageContent: (<div className="container widthadjust">
             <div className="profilecontainer ">
