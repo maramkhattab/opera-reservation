@@ -6,7 +6,7 @@ import "./OperaManagement.css";
 import Event from "../../Components/Event/Event";
 import CreateEvent from "../CreateEvent/CreateEvent";
 import CreateHall from "../CreateHall/CreateHall";
-
+import axios from "../../axios-users"
 
 
 
@@ -44,20 +44,63 @@ class OperaManagement extends Component {
                 this.setState({ pageContent: pageContent })
             }
             else if (choice == "Events") {
+                axios({
+                    method: 'get',
+                    url: '/api/events/getAllEvents',
+
+                })
+                    .then(response => {
+                        var pageContent = (
+                            <div className="container widthadjust">
+                                <div className="profilecontainer ">
+
+
+                                    {response.data.map(hafla => (
+
+                                        < Event key={hafla.id} eventName={hafla.name} eventDate={hafla.date} eventHall={hafla.Hallid} eventDescription={hafla.description} />
+                                    ))}
+                                </div>
+                            </div>
+
+                        )
+                        this.setState({ pageContent: pageContent })
+
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+
+
+            }
+
+    }
+    componentWillMount() {
+        axios({
+            method: 'get',
+            url: '/api/events/getAllEvents',
+
+        })
+            .then(response => {
                 var pageContent = (
                     <div className="container widthadjust">
                         <div className="profilecontainer ">
 
 
-                            <Event eventName={"Omar Khairat's concert"} eventDate={"Date: 27/12/2019"} eventHall={"Hall number:5"} eventDescription="bla ba bla" />
-                            <Event eventName={"Omar Khairat's concert"} eventDate={"Date: 27/12/2019"} eventHall={"Hall number:5"} eventDescription="bla ba bla" />
+                            {response.data.map(hafla => (
 
+                                < Event key={hafla.id} eventName={hafla.name} eventDate={hafla.date} eventHall={hafla.Hallid} eventDescription={hafla.description} />
+                            ))}
                         </div>
                     </div>
 
                 )
                 this.setState({ pageContent: pageContent })
-            }
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
 
     }
     render() {

@@ -15,9 +15,9 @@ class Event extends React.Component {
                     <div className="card-body" style={{ textAlign: "center" }}>
                         <p classNAme="card-text"><img style={{ margin: "0px", textAlign: "center", display: "inline-block" }} src="https://sunlimetech.com/portfolio/boot4menu/assets/imgs/team/img_01.png" /></p>
                         <h4 className="card-title"> {this.props.eventName} </h4>
-                        <p className="card-text"> {this.props.eventDate}</p>
-                        <p className="card-text"> {this.props.eventTime}</p>
-                        <p className="card-text">{this.props.eventHall}</p>
+                        <p className="card-text"> Date: {this.props.eventDate}</p>
+                        <p className="card-text"> Time:{this.props.eventTime}</p>
+                        <p className="card-text">Hall number:{this.props.eventHall}</p>
                         <p className="card-text"> {this.props.eventDescription}</p>
                     </div>
                 </div>
