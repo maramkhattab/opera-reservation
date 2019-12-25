@@ -3,6 +3,10 @@ import "./Signup.css";
 import Button from "../../Components/UI/button//button";
 import Input from "../../Components/UI/Input/Input";
 import AuthNavBar from "../../Components/AuthNav/AuthNavBar";
+//import axios from 'axios';
+import axios from "../../axios-users"
+import setAuthToken from "../../utils/setAuthToken";
+
 class Signup extends Component {
 
     state = {
@@ -177,7 +181,7 @@ class Signup extends Component {
         this.setState({ signupForm: updatedSignupForm, formIsValid: formIsValid });
     };
     checkValidity(value, rules) {
-        let isValid = true;
+        let isValid = true; 
 
         if (rules.startLetter) {
             isValid = !!value.match(/^[a-zA-Z][a-zA-Z_0-9]*$/) && isValid;
@@ -208,6 +212,88 @@ class Signup extends Component {
 
         return isValid;
     }
+
+    // handleClick(){
+    //     var apiBaseUrl = "http://localhost:8080";
+    //     console.log("values in register handler");
+        
+    //     //To be done:check for empty values before hitting submit
+        
+    //       var payload={
+    //       "username": this.state.username,
+    //       "password": this.state.password,
+    //       "firstname":this.state.firstname,
+    //       "lastname":this.state.lastname,
+    //       "birthdate":this.state.birthdate,
+    //       "gender":this.state.gender,
+    //       "city":this.state.city,
+    //       "address":this.state.address,
+    //       "email":this.state.email
+
+    //       }
+    //       axios.post(apiBaseUrl+'/register', payload)
+    //      .then(function (response) {
+    //        console.log(response);
+    //        if(response.data.code === 200){
+    //            console.log("error")
+    //        }
+    //        else{
+    //          console.log("some error ocurred",response.data.code);
+    //        }
+    //      })
+    //      .catch(function (error) {
+    //        console.log(error);
+    //      });
+
+
+    //   }
+
+
+
+
+      submitHandler = event =>  {
+      
+        event.preventDefault();
+        this.setState({ loading: true });
+        const formData = {};
+        for (let formElementIdentifier in this.state.signupForm) {
+          formData[formElementIdentifier] = this.state.signupForm[
+            formElementIdentifier
+          ].value;
+        }
+  
+        const user = {
+           
+        };
+
+        var body = {
+            username: this.state.signupForm.username.value.toString(),
+            password: this.state.signupForm.password.value.toString(),
+            firstname:this.state.signupForm.firstname.value.toString(),
+            lastname:this.state.signupForm.lastname.value.toString(),
+            birthdate:"10-10-1997",
+            gender:1,
+            city:this.state.signupForm.city.value.toString(),
+            address:this.state.signupForm.Address.value.toString(),
+            email:this.state.signupForm.email.toString()
+        }
+        
+        axios({
+            method: 'post',
+            url: '/api/users/register',
+            data: body
+        })
+        .then(function (response) {
+            console.log(response);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+       
+       
+      };
+
+
     render() {
         const formElementsArray = [];
         for (let key in this.state.signupForm) {
@@ -250,8 +336,8 @@ class Signup extends Component {
 
                         <Button
                             //className="btn btn-primary signupButton"
-                            //onClick={this.passwordHandler}
-                            disabled={!this.state.formIsValid}
+                            //onClick={this.handleClick}
+                         // disabled={!this.state.formIsValid}
                         >
                             Signup
                     </Button>
