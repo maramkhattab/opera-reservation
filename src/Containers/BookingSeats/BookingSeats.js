@@ -28,6 +28,8 @@ onChangeHandler= (event,value) => {
 submitHandler = event => {
 
         event.preventDefault();
+       
+        var userid
         this.setState({ loading: true });
         const formData = {};
         for (let formElementIdentifier in this.state.signupForm) {
@@ -35,7 +37,8 @@ submitHandler = event => {
                 formElementIdentifier
             ].value;
         }
-
+        var eventid=this.props.match.params.eventKey
+        console.log(eventid)
         var token = localStorage.getItem("jwtToken");
         // var jwt = require('jsonwebtoken');
         // var decode = jwt.decode(token)
@@ -47,46 +50,50 @@ submitHandler = event => {
         })
             .then(response => {
                 var user = response.data;
-                console.log(user)
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
-
-        const user = {
-
-        };
-
+                userid=response.data.id
+                console.log(userid)
+                var n=this.state.bookedseats.length
+        for (var i=0;i<n;i++)
+        {
+            console.log(this.state.bookedseats[i])
         var body = {
-            username: this.state.loginForm.username.value.toString(),
-            password: this.state.loginForm.password.value.toString(),
+
+            number:this.state.bookedseats[i].toString(),
+            eventid:eventid,
+            dataValues:userid
+            
+           
+           
 
         }
+    
 
         axios({
             method: 'post',
             url: '/api/seats/reserveSeat',
-            data: body
+            data: body,
+            headers: {
+                Authorization:  token,
+
+            }
         })
             .then(response => {
                 console.log(response)
-                const token = response.data.token;
-                console.log(token)
-                var jwt = require('jsonwebtoken');
-
-                localStorage.setItem("jwtToken", token);
-                console.log(response);
-                if (response.data.role == 1) { this.props.history.push({ pathname: "/profile" }) }
-                else if (response.data.role == 2) {
-                    this.props.history.push({ pathname: "/management" })
-                }
-                ;
+           
+          
             })
             .catch(function (error) {
                 console.log(error);
             });
+        }
+            })
+            
+        .catch(function (error) {
+                console.log(error);
+            });
 
+
+        
 
 
     };
@@ -405,6 +412,7 @@ render() {
               <br/>
                 <button 
                 type="submit"
+                onClick={this.submitHandler}
                 className="btn btn-primary loginButton" >
                             Confirm Selection
                             </button>

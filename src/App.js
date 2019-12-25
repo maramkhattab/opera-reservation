@@ -25,7 +25,7 @@ function App() {
           <Route exact path="/login" component={Login} />
 
           <Route exact path="/signup" component={Signup} />
-          <Route exact path="/bookingseats" component={BookingSeats} />
+          <Route exact path="/bookingseats/:eventKey" component={BookingSeats} />
           <Route exact path="/admin" component={Admin} />
           <Route path="/" exact component={LandingPage} />
 

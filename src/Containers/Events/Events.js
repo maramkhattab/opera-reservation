@@ -10,9 +10,27 @@ import axios from "../../axios-users"
 
 
 class Events extends Component {
+
     state = {
         pageContent: ""
     }
+//     handleclick = (key) => {
+//         console.log("hello")
+//         var token = localStorage.getItem("jwtToken");
+//         if (token!=null)
+//         {
+
+//            //var key=event.target.key
+//            console.log(key)
+// // this            .props.history.push({ pathname: "/bookingseats" },{key1:key })
+//             this.props.history.push({ pathname: "/bookingseats" },
+//             //passing dial to another screen
+//             { key1: key })
+
+//         }
+
+    // }
+
     componentWillMount() {
         axios({
             method: 'get',
@@ -20,15 +38,17 @@ class Events extends Component {
 
         })
             .then(response => {
+                console.log(response)
                 var pageContent = (
                     <div className="container widthadjust">
                         <div className="profilecontainer ">
 
-
                             {response.data.map(hafla => (
 
-                                < Event key={hafla.id} eventName={hafla.name} eventDate={hafla.date} eventHall={hafla.Hallid} eventDescription={hafla.description} />
+                                < Event  key={hafla.id} eventID={hafla.id} eventName={hafla.name} eventDate={hafla.date} eventTime={hafla.starttime} eventHall={hafla.HallId} eventDescription={hafla.description} />
+                                
                             ))}
+                           
                         </div>
                     </div>
 
@@ -42,6 +62,8 @@ class Events extends Component {
 
 
     }
+    
+
     render() {
         return (
             <div className="Body">
