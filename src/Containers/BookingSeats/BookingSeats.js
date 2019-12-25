@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 // import { connect } from 'react-redux'
+import axios from "../../axios-users"
 import "./BookingSeats.css";
 class BookingSeats extends Component {
     constructor(props) {
         super(props);
     this.state = {
         bookedseats:[],
-        row:3,
-        col:3
+        cardnumber:null,
+        cardpin:null
 
     };
 }
@@ -23,7 +24,84 @@ onChangeHandler= (event,value) => {
     this.setState({ bookedseats: bookedseats })
     console.log(bookedseats);
   };
+  addnum= (event,value) => {
+    console.log("m");
+    
+    this.setState({ cardnumber: value })
+    
+  };
+  addpin =(event,value) => {
+    console.log("m");
+    
+    this.setState({ cardpin: value })
+    
+  };
 
+submitHandler = event => {
+
+        event.preventDefault();
+        this.setState({ loading: true });
+        const formData = {};
+        for (let formElementIdentifier in this.state.signupForm) {
+            formData[formElementIdentifier] = this.state.signupForm[
+                formElementIdentifier
+            ].value;
+        }
+
+        var token = localStorage.getItem("jwtToken");
+        // var jwt = require('jsonwebtoken');
+        // var decode = jwt.decode(token)
+        console.log(token)
+        axios({
+            method: 'get',
+            url: '/api/users/getUser',
+            headers: { Authorization: token }
+        })
+            .then(response => {
+                var user = response.data;
+                console.log(user)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+        const user = {
+
+        };
+
+        var body = {
+            username: this.state.loginForm.username.value.toString(),
+            password: this.state.loginForm.password.value.toString(),
+
+        }
+
+        axios({
+            method: 'post',
+            url: '/api/seats/reserveSeat',
+            data: body
+        })
+            .then(response => {
+                console.log(response)
+                const token = response.data.token;
+                console.log(token)
+                var jwt = require('jsonwebtoken');
+
+                localStorage.setItem("jwtToken", token);
+                console.log(response);
+                if (response.data.role == 1) { this.props.history.push({ pathname: "/profile" }) }
+                else if (response.data.role == 2) {
+                    this.props.history.push({ pathname: "/management" })
+                }
+                ;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+
+    };
 
 
 render() {
@@ -41,19 +119,13 @@ render() {
                         <label> Credit Card Number
                             <span>*</span>
                         </label>
-                        <input type="number" id="Creditcardnumber" required/>
+                        <input type="number" id="Creditcardnumber" required value="" onChange={event => this.addnum(event, this.value)}/>
                     </div>
                     <div class="agileits-center">
                         <label> Credit Card Pin
                             <span>*</span>
                         </label>
-                        <input type="number" id="Creditcardpin" required/>
-                    </div>
-                    <div class="agileits-right">
-                        <label> Number of Seats
-                            <span>*</span>
-                        </label>
-                        <input type="number" id="Numseats" required min="1"/>
+                        <input type="number" id="Creditcardpin" required onChange={event => this.addpin(event, this.value)}/>
                     </div>
                 </div>
     
