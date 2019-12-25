@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 // import { connect } from 'react-redux'
+import axios from "../../axios-users"
 import "./BookingSeats.css";
 class BookingSeats extends Component {
     constructor(props) {
@@ -24,6 +25,71 @@ onChangeHandler= (event,value) => {
     console.log(bookedseats);
   };
 
+submitHandler = event => {
+
+        event.preventDefault();
+        this.setState({ loading: true });
+        const formData = {};
+        for (let formElementIdentifier in this.state.signupForm) {
+            formData[formElementIdentifier] = this.state.signupForm[
+                formElementIdentifier
+            ].value;
+        }
+
+        var token = localStorage.getItem("jwtToken");
+        // var jwt = require('jsonwebtoken');
+        // var decode = jwt.decode(token)
+        console.log(token)
+        axios({
+            method: 'get',
+            url: '/api/users/getUser',
+            headers: { Authorization: token }
+        })
+            .then(response => {
+                var user = response.data;
+                console.log(user)
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+        const user = {
+
+        };
+
+        var body = {
+            username: this.state.loginForm.username.value.toString(),
+            password: this.state.loginForm.password.value.toString(),
+
+        }
+
+        axios({
+            method: 'post',
+            url: '/api/seats/reserveSeat',
+            data: body
+        })
+            .then(response => {
+                console.log(response)
+                const token = response.data.token;
+                console.log(token)
+                var jwt = require('jsonwebtoken');
+
+                localStorage.setItem("jwtToken", token);
+                console.log(response);
+                if (response.data.role == 1) { this.props.history.push({ pathname: "/profile" }) }
+                else if (response.data.role == 2) {
+                    this.props.history.push({ pathname: "/management" })
+                }
+                ;
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+
+    };
 
 
 render() {
