@@ -149,7 +149,7 @@ class Signup extends Component {
                 touched: true
             },
         },
-
+        gender: 0,
         formIsValid: false,
         loading: false,
         error: {},
@@ -181,7 +181,7 @@ class Signup extends Component {
         this.setState({ signupForm: updatedSignupForm, formIsValid: formIsValid });
     };
     checkValidity(value, rules) {
-        let isValid = true; 
+        let isValid = true;
 
         if (rules.startLetter) {
             isValid = !!value.match(/^[a-zA-Z][a-zA-Z_0-9]*$/) && isValid;
@@ -213,89 +213,58 @@ class Signup extends Component {
         return isValid;
     }
 
-    // handleClick(){
-    //     var apiBaseUrl = "http://localhost:8080";
-    //     console.log("values in register handler");
-        
-    //     //To be done:check for empty values before hitting submit
-        
-    //       var payload={
-    //       "username": this.state.username,
-    //       "password": this.state.password,
-    //       "firstname":this.state.firstname,
-    //       "lastname":this.state.lastname,
-    //       "birthdate":this.state.birthdate,
-    //       "gender":this.state.gender,
-    //       "city":this.state.city,
-    //       "address":this.state.address,
-    //       "email":this.state.email
+    submitHandler = event => {
 
-    //       }
-    //       axios.post(apiBaseUrl+'/register', payload)
-    //      .then(function (response) {
-    //        console.log(response);
-    //        if(response.data.code === 200){
-    //            console.log("error")
-    //        }
-    //        else{
-    //          console.log("some error ocurred",response.data.code);
-    //        }
-    //      })
-    //      .catch(function (error) {
-    //        console.log(error);
-    //      });
-
-
-    //   }
-
-
-
-
-      submitHandler = event =>  {
-      
         event.preventDefault();
         this.setState({ loading: true });
         const formData = {};
         for (let formElementIdentifier in this.state.signupForm) {
-          formData[formElementIdentifier] = this.state.signupForm[
-            formElementIdentifier
-          ].value;
+            formData[formElementIdentifier] = this.state.signupForm[
+                formElementIdentifier
+            ].value;
         }
-  
+
         const user = {
-           
+
         };
 
         var body = {
             username: this.state.signupForm.username.value.toString(),
             password: this.state.signupForm.password.value.toString(),
-            firstname:this.state.signupForm.firstname.value.toString(),
-            lastname:this.state.signupForm.lastname.value.toString(),
-            birthdate:"10-10-1997",
-            gender:1,
-            city:this.state.signupForm.city.value.toString(),
-            address:this.state.signupForm.Address.value.toString(),
-            email:this.state.signupForm.email.toString()
+            firstname: this.state.signupForm.firstname.value.toString(),
+            lastname: this.state.signupForm.lastname.value.toString(),
+            city: this.state.signupForm.city.value.toString(),
+            address: this.state.signupForm.Address.value.toString(),
+            email: this.state.signupForm.email.value.toString(),
+            birthdate: this.state.signupForm.birthdate.value.toString(),
+            gender: this.state.gender,
         }
-        
+
         axios({
             method: 'post',
             url: '/api/users/register',
             data: body
         })
-        .then(response=>{
-            console.log(response);
-            this.props.history.push({ pathname: "/login" })
-        })
-        .catch(error=>{
-            console.log(error);
-        });
-       
-       
-      };
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
+
+    };
+    genderChanged = (event) => {
+        var gender = 0
+        if (event.target.value == "Female") {
+            gender = 1
+        }
+        this.setState({ gender: gender })
+
+    }
 
     render() {
+
         const formElementsArray = [];
         for (let key in this.state.signupForm) {
             formElementsArray.push({
@@ -303,6 +272,7 @@ class Signup extends Component {
                 config: this.state.signupForm[key]
             });
         }
+
         return (<div className="Body">
             <AuthNavBar />
             <div className="jumbotron jumbotron-fluid signupPageCanvas">
@@ -328,23 +298,23 @@ class Signup extends Component {
                             />
                         ))}
                         <div className="form-group" >
-                            <select required={true} className="InputElement">
+                            <select required={true} className="InputElement" onChange={this.genderChanged}>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
 
                             </select>
                         </div>
-                        <div className="form-group" >
+                        {/* <div className="form-group" >
                             <select required={true} className="InputElement">
                                 <option value="Male">Customer</option>
                                 <option value="Female">Opera Management</option>
 
                             </select>
-                        </div>
+                        </div> */}
                         <Button
-                            //className="btn btn-primary signupButton"
-                            //onClick={this.handleClick}
-                         // disabled={!this.state.formIsValid}
+                        //className="btn btn-primary signupButton"
+                        //onClick={this.handleClick}
+                        // disabled={!this.state.formIsValid}
                         >
                             Signup
                     </Button>

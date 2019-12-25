@@ -10,11 +10,8 @@ import EditProfile from "../EditProfile/EditProfile";
 
 
 class Profile extends React.Component {
-    componentDidMount() {
 
-  
-      }
-   
+
     state = {
         pageContent: (<div className="container widthadjust">
             <div className="profilecontainer ">
@@ -27,22 +24,36 @@ class Profile extends React.Component {
     }
     sidebarHandler = (event, choice) => {
         if (choice == "edit") {
-            var pageContent = (<div className="container widthadjust">
-                <div className="profilecontainer ">
+            var token = localStorage.getItem("jwtToken");
+            // var jwt = require('jsonwebtoken');
+            // var decode = jwt.decode(token)
+            console.log(token)
+            axios({
+                method: 'get',
+                url: '/api/users/getUser',
+                headers: { Authorization: token }
+            })
+                .then(response => {
+                    var user = response.data;
+                    console.log(user)
+                    var pageContent = (<div className="container widthadjust">
+                        <div className="profilecontainer ">
+                            <EditProfile city={user.city} gender={user.gender} firstname={user.firstname} lastname={user.lastname} address={user.address} birthdate={user.birthdate} />
+                        </div>
+                    </div>)
+                    this.setState({ pageContent: pageContent });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
 
 
-                    <EditProfile />
-                </div>
-            </div>)
-            this.setState({ pageContent: pageContent })
         }
         else if (choice == "reservation") {
             var pageContent = (
                 <div className="container widthadjust">
                     <div className="profilecontainer ">
-
-
-                        <Reservation eventName={"Omar Khairat's concert"} eventDate={"Date: 27/12/2019"} eventHall={"Hall number:5"} eventTicketsCount="Number of tickets: 3" />
+                        <Reservation eventName={"Omar Khairat's concert"} eventDate={"27/12/2019"} eventHall={"5"} eventTicketsCount=" 3" />
 
                     </div>
                 </div>
@@ -53,7 +64,7 @@ class Profile extends React.Component {
 
 
     }
-    
+
     render() {
         return (
             <div className="Body">
