@@ -103,19 +103,19 @@ class Login extends Component {
         return isValid;
     }
 
-    submitHandler = event =>  {
-      
+    submitHandler = event => {
+
         event.preventDefault();
         this.setState({ loading: true });
         const formData = {};
         for (let formElementIdentifier in this.state.signupForm) {
-          formData[formElementIdentifier] = this.state.signupForm[
-            formElementIdentifier
-          ].value;
+            formData[formElementIdentifier] = this.state.signupForm[
+                formElementIdentifier
+            ].value;
         }
-  
+
         const user = {
-           
+
         };
 
         var body = {
@@ -123,22 +123,25 @@ class Login extends Component {
             password: this.state.loginForm.password.value.toString(),
 
         }
-        
+
         axios({
             method: 'post',
             url: '/api/users/login',
             data: body
         })
-        .then(function (response) {
-            console.log(response);
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
-        
+            .then(function (response) {
+                console.log(response);
+                this.props.history.push(
+                    "/profile/"
+                );
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
-       
-      };
+
+
+    };
 
     render() {
         const formElementsArray = [];
