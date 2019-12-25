@@ -141,6 +141,7 @@ class Login extends Component {
                 var jwt = require('jsonwebtoken');
 
                 localStorage.setItem("jwtToken", token);
+                localStorage.setItem("role", response.data.role);
                 console.log(response);
                 if (response.data.role == 1) { this.props.history.push({ pathname: "/profile" }) }
                 else if (response.data.role == 2) {
