@@ -1,5 +1,5 @@
 import React from "react";
-
+import axios from "../../axios-users"
 class Users extends React.Component {
 
     state = {
@@ -7,6 +7,32 @@ class Users extends React.Component {
 
         </div>),
         role: ""
+    }
+    delclickHandler=(event)=>{
+        console.log("heello")
+        var token=localStorage.getItem("jwtToken");
+        var body={
+            username:this.props.Username
+        }
+        axios({
+            method: 'post',
+            url: '/api/users/deleteAccount',
+            data: body,
+            headers: {
+                Authorization:  token,
+
+            }
+        })
+            .then(response => {
+                console.log(response)
+           
+          
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        
+            
     }
 
     clickHandler = (event, choice) => {
@@ -53,6 +79,7 @@ class Users extends React.Component {
                         <button
                             type="submit"
                             className="btn btn-primary logButton"
+                            onClick={event => this.delclickHandler()}
                         >
                             Delete
                              </button>
