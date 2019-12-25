@@ -158,54 +158,54 @@ class CreateEvent extends Component {
         console.log(reader.result);
     }
 
-//     submitHandler = event => {
+    submitHandler = event => {
 
-//         event.preventDefault();
-//         this.setState({ loading: true });
-//         const formData = {};
-//         for (let formElementIdentifier in this.state.signupForm) {
-//             formData[formElementIdentifier] = this.state.signupForm[
-//                 formElementIdentifier
-//             ].value;
-//         }
-//         // headers: {'Authorization':'jwt'  + token};
+        event.preventDefault();
+        this.setState({ loading: true });
+        const formData = {};
+        for (let formElementIdentifier in this.state.signupForm) {
+            formData[formElementIdentifier] = this.state.signupForm[
+                formElementIdentifier
+            ].value;
+        }
+        // headers: {'Authorization':'jwt'  + token};
 
-//         var body = {
-//             name:this.state.createEventForm.eventname.value.toString(),
-//             description:"hahahahahah",
-//             date:this.state.createEventForm.eventdate.value.toString(),
-//             starttime:10,
-//             endtime:11,
-//             hallnumber:this.state.createEventForm.hall.value
+       var body = {
+                name:this.state.createEventForm.eventname.value.toString(),
+                description:"hahahahahah",
+                date:this.state.createEventForm.eventdate.value.toString(),
+                starttime:this.state.createEventForm.eventtime.value.toString(),
+                endtime:"00:00:00",
+                hallnumber:this.state.createEventForm.hall.value
+    
 
-//         }
-// var token1
-// token1=localStorage.getItem("jwtToken");
-// console.log(token1)
-//         axios({
-//             method: 'post',
-//             url: 'api/events/createEvent',
-//             data: body,
-//             headers: {
-//                 Authorization: token1,
+        }
+var token1
+token1=localStorage.getItem("jwtToken");
+console.log(token1)
+console.log(body)
+        axios({
+            method: 'post',
+            url: 'api/events/createEvent',
+            data: body,
+            headers: {
+                Authorization:  token1,
 
-//             }
-//         })
-//             .then(function (response) {
+            }
+        })
+            .then(function (response) {
                
-//                 console.log(response);
+                console.log(response);
             
                
-//             })
-//             .catch(function (error) {
-//                 console.log(error);
-//             });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
 
 
-//     };
-
-
+    };
 
     render() {
         const formElementsArray = [];
