@@ -58,6 +58,20 @@ class CreateEvent extends Component {
                 valid: false,
                 touched: false
             },
+            eventtime: {
+                elementType: "time",
+                elementConfig: {
+                    type: "time",
+                    placeholder: "time"
+                },
+                value: "",
+                validation: {
+                    required: true
+                },
+                errorMessage: "",
+                valid: false,
+                touched: false
+            }
 
 
         },
