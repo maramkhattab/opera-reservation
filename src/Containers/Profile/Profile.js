@@ -15,7 +15,7 @@ class Profile extends Component {
             <div className="profilecontainer ">
 
 
-                <Reservation eventName={"Omar Khairat's concert"} eventDate={"27/12/2019"} eventTime={"19:00"} eventHall={"5"} eventTicketsCount=" 3" />
+                <Reservation eventName={"Omar Khairat's concert"} eventDate={"12-29-2019"} eventTime={"19:00"} eventHall={"5"} eventTicketsCount=" 3" />
 
             </div>
         </div>)
