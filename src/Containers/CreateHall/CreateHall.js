@@ -1,17 +1,18 @@
 import React, { Component } from "react";
-import "./CreateEvent.css";
+import "./CreateHall.css";
 import Button from "../../Components/UI/button//button";
 import Input from "../../Components/UI/Input/Input";
-class CreateEvent extends Component {
+
+class CreateHall extends Component {
 
     state = {
-        createEventForm: {
+        createHallForm: {
 
-            eventname: {
+            hallnumber: {
                 elementType: "input",
                 elementConfig: {
-                    type: "text",
-                    placeholder: "Event name"
+                    type: "number",
+                    placeholder: "Hall number"
                 },
                 value: "",
                 validation: {
@@ -27,11 +28,11 @@ class CreateEvent extends Component {
             },
 
 
-            hall: {
+            numberOfRows: {
                 elementType: "input",
                 elementConfig: {
                     type: "number",
-                    placeholder: "Hall number"
+                    placeholder: "Number of rows"
                 },
                 value: "",
                 validation: {
@@ -43,11 +44,11 @@ class CreateEvent extends Component {
                 touched: false
             },
 
-            eventdate: {
-                elementType: "date",
+            numberOfColumns: {
+                elementType: "number",
                 elementConfig: {
-                    type: "date",
-                    placeholder: "Event date"
+                    type: "number",
+                    placeholder: "Number of columns"
                 },
                 value: "",
                 validation: {
@@ -71,11 +72,11 @@ class CreateEvent extends Component {
         errorMessage: null
     };
     inputChangedHandler = (event, inputIdentifier) => {
-        const updatedcreateEventForm = {
-            ...this.state.createEventForm
+        const updatedcreateHallForm = {
+            ...this.state.createHallForm
         };
         const updatedFormElement = {
-            ...updatedcreateEventForm[inputIdentifier]
+            ...updatedcreateHallForm[inputIdentifier]
         };
         updatedFormElement.value = event.target.value;
         updatedFormElement.valid = this.checkValidity(
@@ -83,13 +84,13 @@ class CreateEvent extends Component {
             updatedFormElement.validation
         );
         updatedFormElement.touched = true;
-        updatedcreateEventForm[inputIdentifier] = updatedFormElement;
+        updatedcreateHallForm[inputIdentifier] = updatedFormElement;
 
         let formIsValid = true;
-        for (let inputIdentifier in updatedcreateEventForm) {
-            formIsValid = updatedcreateEventForm[inputIdentifier].valid && formIsValid;
+        for (let inputIdentifier in updatedcreateHallForm) {
+            formIsValid = updatedcreateHallForm[inputIdentifier].valid && formIsValid;
         }
-        this.setState({ createEventForm: updatedcreateEventForm, formIsValid: formIsValid });
+        this.setState({ createHallForm: updatedcreateHallForm, formIsValid: formIsValid });
     };
     checkValidity(value, rules) {
         let isValid = true;
@@ -118,7 +119,7 @@ class CreateEvent extends Component {
             isValid = value.length <= rules.maxLength && isValid;
         }
         if (rules.matching) {
-            isValid = value === this.state.createEventForm.password.value && isValid;
+            isValid = value === this.state.createHallForm.password.value && isValid;
         }
 
         return isValid;
@@ -144,19 +145,19 @@ class CreateEvent extends Component {
     }
     render() {
         const formElementsArray = [];
-        for (let key in this.state.createEventForm) {
+        for (let key in this.state.createHallForm) {
             formElementsArray.push({
                 id: key,
-                config: this.state.createEventForm[key]
+                config: this.state.createHallForm[key]
             });
         }
         return (
             // <div className="Body">
 
-            //     <div className="jumbotron jumbotron-fluid createEventPageCanvas">
+            //     <div className="jumbotron jumbotron-fluid createHallPageCanvas">
             //         <div className="container">
-            <form onSubmit={this.submitHandler} className="createEventBox">
-                <h3 className="createEventHeader">Create a new event</h3>
+            <form onSubmit={this.submitHandler} className="createHallBox">
+                <h3 className="createHallHeader">Create a new hall</h3>
                 {this.state.errorMessage}
                 {formElementsArray.map(formElement => (
                     <Input
@@ -170,34 +171,15 @@ class CreateEvent extends Component {
                         touched={formElement.config.touched}
                         autoFocus={formElement.config.autoFocus}
                         changed={event => this.inputChangedHandler(event, formElement.id)}
-                        invalidEmail={this.state.createEventForm.errorEmail}
+                        invalidEmail={this.state.createHallForm.errorEmail}
                         invalidScreenname={this.state.errorScreenname}
-                        invalidLenScreenname={this.state.createEventForm.errorLenScreenname}
+                        invalidLenScreenname={this.state.createHallForm.errorLenScreenname}
                     />
                 ))}
-                <div className="form-group" >
-                    <textarea rows="3" cols="25" placeholder="Description" className="InputElement" ></textarea>
-                </div>
 
-                <div className="form-group">
-                    <img src={this.state.imagePreview} className="image " />
-                </div>
-                <div className="form-group limitwidth center">
-                    <div className="custom-file ">
-                        <input
-                            type="file"
-                            className="custom-file-input InputElement"
-                            id="inputGroupFile01"
-                            aria-describedby="inputGroupFileAddon01"
-                            onChange={e => this.onChange(e)}
-                        />
-                        <label className="custom-file-label" htmlFor="inputGroupFile01">
-                            Event poster
-                                </label>
-                    </div>
-                </div>
+
                 <Button
-                    //className="btn btn-primary createEventButton"
+                    //className="btn btn-primary createHallButton"
                     //onClick={this.passwordHandler}
                     disabled={!this.state.formIsValid}
                 >
@@ -212,4 +194,4 @@ class CreateEvent extends Component {
     }
 }
 
-export default CreateEvent
+export default CreateHall

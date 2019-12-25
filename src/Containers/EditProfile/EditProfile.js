@@ -184,49 +184,52 @@ class EditProfile extends Component {
                 config: this.state.editProfileForm[key]
             });
         }
-        return (<div className="Body">
+        return (
+            // <div className="Body">
 
-            <div className="jumbotron jumbotron-fluid editProfilePageCanvas">
-                <div className="container">
-                    <form onSubmit={this.submitHandler} className="editProfileBox">
-                        <h3 className="editProfileHeader">Edit your profile</h3>
-                        {this.state.errorMessage}
-                        {formElementsArray.map(formElement => (
-                            <Input
-                                key={formElement.id}
-                                elementType={formElement.config.elementType}
-                                elementConfig={formElement.config.elementConfig}
-                                value={formElement.config.value}
-                                invalid={!formElement.config.valid}
-                                errorMessage={formElement.config.errorMessage}
-                                shouldValidate={formElement.config.validation}
-                                touched={formElement.config.touched}
-                                autoFocus={formElement.config.autoFocus}
-                                changed={event => this.inputChangedHandler(event, formElement.id)}
-                                invalidEmail={this.state.editProfileForm.errorEmail}
-                                invalidScreenname={this.state.errorScreenname}
-                                invalidLenScreenname={this.state.editProfileForm.errorLenScreenname}
-                            />
-                        ))}
-                        <div className="form-group" >
-                            <select required={true} className="InputElement">
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
+            //     <div className="jumbotron jumbotron-fluid editProfilePageCanvas">
+            //         <div className="container">
+            <form onSubmit={this.submitHandler} className="editProfileBox">
+                <h3 className="editProfileHeader">Edit your profile</h3>
+                {this.state.errorMessage}
+                {formElementsArray.map(formElement => (
+                    <Input
+                        key={formElement.id}
+                        elementType={formElement.config.elementType}
+                        elementConfig={formElement.config.elementConfig}
+                        value={formElement.config.value}
+                        invalid={!formElement.config.valid}
+                        errorMessage={formElement.config.errorMessage}
+                        shouldValidate={formElement.config.validation}
+                        touched={formElement.config.touched}
+                        autoFocus={formElement.config.autoFocus}
+                        changed={event => this.inputChangedHandler(event, formElement.id)}
+                        invalidEmail={this.state.editProfileForm.errorEmail}
+                        invalidScreenname={this.state.errorScreenname}
+                        invalidLenScreenname={this.state.editProfileForm.errorLenScreenname}
+                    />
+                ))}
+                <div className="form-group" >
+                    <select required={true} className="InputElement">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
 
-                            </select>
-                        </div>
+                    </select>
+                </div>
 
-                        <Button
-                            className="btn btn-primary editProfileButton"
-                        //onClick={this.passwordHandler}
-                        // disabled={!this.state.formIsValid}
-                        >
-                            Done
+                <Button
+                    className="btn btn-primary editProfileButton"
+                //onClick={this.passwordHandler}
+                // disabled={!this.state.formIsValid}
+                >
+                    Done
                     </Button>
-                    </form></div>
+            </form>
+            //             </div>
 
-            </div>
-        </div >)
+            //     </div>
+            // </div >)
+        )
     }
 }
 

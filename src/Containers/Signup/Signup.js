@@ -303,7 +303,7 @@ class Signup extends Component {
             });
         }
         return (<div className="Body">
-                 <AuthNavBar/>
+            <AuthNavBar />
             <div className="jumbotron jumbotron-fluid signupPageCanvas">
                 <div className="container">
                     <form onSubmit={this.submitHandler} className="signupBox">
@@ -333,7 +333,13 @@ class Signup extends Component {
 
                             </select>
                         </div>
+                        <div className="form-group" >
+                            <select required={true} className="InputElement">
+                                <option value="Male">Customer</option>
+                                <option value="Female">Opera Management</option>
 
+                            </select>
+                        </div>
                         <Button
                             //className="btn btn-primary signupButton"
                             //onClick={this.handleClick}

@@ -5,11 +5,17 @@ import './App.css';
 import Login from "./Containers/Login/Login";
 import Signup from "./Containers/Signup/Signup";
 import EditProfile from "./Containers/EditProfile/EditProfile";
+import Profile from "./Containers/Profile/Profile";
+import Admin from "./Containers/Admin/Admin";
+import OperaManagement from "./Containers/OperaManagement/OperaManagement";
+import Reservation from "./Components/Reservation/Reservation";
 import CreateEvent from "./Containers/CreateEvent/CreateEvent";
+import CreateHall from "./Containers/CreateHall/CreateHall";
 import 'bootstrap/dist/css/bootstrap.css';
-import landingPage from "./Components/UI/landingPage/landingPage";
-import Cover from "./Components/UI/cover/cover";
+import LandingPage from "./Components/UI/LandingPage/LandingPage";
+
 import BookingSeats from "./Containers/BookingSeats/BookingSeats";
+
 function App() {
   return (
     <div className="App">
@@ -19,14 +25,20 @@ function App() {
 
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/bookingseats" component={BookingSeats} />
-          <Route path="/" exact component={Cover}/>
-          
+          <Route exact path="/admin" component={Admin} />
+          <Route path="/" exact component={LandingPage} />
+
+
           {/* <Route path="/" exact component={LandingPage} />
             
             <Route exact path="/profile/:screenName" component={Profile} /> */}
 
           <Route exact path="/editprofile" component={EditProfile} />
+          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/management" component={OperaManagement} />
+          <Route exact path="/Reservation" component={Reservation} />
           <Route exact path="/createevent" component={CreateEvent} />
+          <Route exact path="/createhall" component={CreateHall} />
 
         </Switch>
       </BrowserRouter>
