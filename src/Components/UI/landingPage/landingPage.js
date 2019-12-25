@@ -41,7 +41,7 @@ const LandingPage = props => (
                         <hr class="divider my-4" />
                         <div class="row h-100 align-items-center justify-content-center text-center">
                             <p class="text-white-75 font-weight-light mb-5">Cairo opera house is the main performing arts venue in the Egyptian capital and home to most of Egypt's finest musical groups, it is located on the southern portion of Gezira Island in the Nile River, in the Zamalek district near downtown Cairo</p>
-                            <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">View Events</a>
+                            <a class="btn btn-primary btn-xl js-scroll-trigger" href="events">View Events</a>
                         </div>
                     </div>
                 </div>
