@@ -73,6 +73,52 @@ class Profile extends React.Component {
 
         }
         else if (choice == "reservation") {
+            var token = localStorage.getItem("jwtToken");
+            // var jwt = require('jsonwebtoken');
+            // var decode = jwt.decode(token)
+            //console.log(token)
+            axios({
+                method: 'get',
+                url: '/api/seats/viewMyReservations',
+                headers: { Authorization: token }
+            })
+                .then(response => {
+                    var user = response.data;
+                    
+                    var content=[]
+                    for (var i=0;i<response.data.length;i++){
+                        console.log(user[i].EventId.toString())
+
+                        var body ={eventid:user[i].EventId}
+                        
+                        console.log(body)
+                        axios({
+                            method: 'get',
+                            url: '/api/events/getEventById',
+                            data :body
+
+                        })
+                            .then(response => {
+            
+                                content.push( <Reservation eventName={response.name} eventDate={response.date} eventHall={response.hall} eventTicketsCount={user[i].number} />)
+                              
+                            })
+                            .catch(function (error) {
+                                console.log(error);
+                            });
+                    }
+                    var pageContent = (<div className="container widthadjust">
+                        <div className="profilecontainer ">
+                            {/* <EditProfile city={user.city} gender={user.gender} firstname={user.firstname} lastname={user.lastname} address={user.address} birthdate={user.birthdate} /> */}
+                        
+                            {content}
+                        </div>
+                    </div>)
+                    this.setState({ pageContent: pageContent });
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
             var pageContent = (
                 <div className="container widthadjust">
                     <div className="profilecontainer ">

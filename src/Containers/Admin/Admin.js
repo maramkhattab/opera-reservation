@@ -37,7 +37,9 @@ class Admin extends Component {
                     var pageContent = (
                         <div className="container widthadjust">
                             <div className="profilecontainer ">
-                                {response.data.map(user => (
+                                {response.data.map(user =>
+                                 console.log(user) (
+                                   
 
                                     <Requests key={user.id} Username={user.username} Email={user.email} Authority={user.role} />
 
