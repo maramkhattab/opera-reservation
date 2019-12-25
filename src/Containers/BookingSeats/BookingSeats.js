@@ -6,8 +6,8 @@ class BookingSeats extends Component {
         super(props);
     this.state = {
         bookedseats:[],
-        row:3,
-        col:3
+        cardnumber:null,
+        cardpin:null
 
     };
 }
@@ -22,6 +22,18 @@ onChangeHandler= (event,value) => {
     bookedseats.push(value)
     this.setState({ bookedseats: bookedseats })
     console.log(bookedseats);
+  };
+  addnum= (event,value) => {
+    console.log("m");
+    
+    this.setState({ cardnumber: value })
+    
+  };
+  addpin =(event,value) => {
+    console.log("m");
+    
+    this.setState({ cardpin: value })
+    
   };
 
 
@@ -41,19 +53,13 @@ render() {
                         <label> Credit Card Number
                             <span>*</span>
                         </label>
-                        <input type="number" id="Creditcardnumber" required/>
+                        <input type="number" id="Creditcardnumber" required value="" onChange={event => this.addnum(event, this.value)}/>
                     </div>
                     <div class="agileits-center">
                         <label> Credit Card Pin
                             <span>*</span>
                         </label>
-                        <input type="number" id="Creditcardpin" required/>
-                    </div>
-                    <div class="agileits-right">
-                        <label> Number of Seats
-                            <span>*</span>
-                        </label>
-                        <input type="number" id="Numseats" required min="1"/>
+                        <input type="number" id="Creditcardpin" required onChange={event => this.addpin(event, this.value)}/>
                     </div>
                 </div>
     
