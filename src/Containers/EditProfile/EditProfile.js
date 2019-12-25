@@ -190,17 +190,6 @@ class EditProfile extends Component {
     submitHandler = event => {
 
         event.preventDefault();
-        // this.setState({ loading: true });
-        // const formData = {};
-        // for (let formElementIdentifier in this.state.signupForm) {
-        //     formData[formElementIdentifier] = this.state.signupForm[
-        //         formElementIdentifier
-        //     ].value;
-        // }
-
-        // const user = {
-
-        // };
 
         var body = {
             password: this.state.editProfileForm.password.value.toString(),
@@ -218,8 +207,9 @@ class EditProfile extends Component {
             data: body,
             headers: { Authorization: token }
         })
-            .then(function (response) {
+            .then(response => {
                 console.log(response);
+                this.props.history.push({ pathname: "/profile" });
             })
             .catch(function (error) {
                 console.log(error);
