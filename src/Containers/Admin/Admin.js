@@ -30,20 +30,20 @@ class Admin extends Component {
                 url: '/api/users/getUser',
                 headers: { Authorization: token }
             })
-            .then(response => {
+                .then(response => {
                     var user = response.data;
                     console.log(user)
-            var pageContent = (
-                <div className="container widthadjust">
-                    <div className="profilecontainer ">
-                <Requests Username={user.username} Email={user.email} Authority={user.role} />
-                </div>
-            </div>)
-                this.setState({ pageContent: pageContent })
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+                    var pageContent = (
+                        <div className="container widthadjust">
+                            <div className="profilecontainer ">
+                                <Requests Username={user.username} Email={user.email} Authority={user.role} />
+                            </div>
+                        </div>)
+                    this.setState({ pageContent: pageContent })
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
         else if (choice == "users") {
             var token = localStorage.getItem("jwtToken");
@@ -52,28 +52,68 @@ class Admin extends Component {
             console.log(token)
             axios({
                 method: 'get',
-                url: '/api/users/getUser',
+                url: '/api/users/getAll',
                 headers: { Authorization: token }
             })
-            .then(response => {
-                    var user = response.data;
-                    console.log(user)
-            var pageContent = (
-                <div className="container widthadjust">
-                    <div className="profilecontainer ">
-                    <Users  Username={user.username} Email={user.email} Address={user.address} Authority={user.role}/>
-                    
-                    </div>
-                </div>
+                .then(response => {
 
-            )
-            this.setState({ pageContent: pageContent })
-            
+                    console.log(response.data)
+                    var pageContent = (
+                        <div className="container widthadjust">
+                            <div className="profilecontainer ">
+                                {response.data.map(user => (
+
+                                    <Users key={user.id} Username={user.username} Email={user.email} firstname={user.firstname} lastname={user.lastname} Authority={user.role} />
+
+                                ))}
+
+
+                            </div>
+                        </div>
+
+                    )
+                    this.setState({ pageContent: pageContent })
+
                 })
-        .catch(function (error) {
-            console.log(error);
-        });
-            }
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+    }
+    componentWillMount() {
+        var token = localStorage.getItem("jwtToken");
+        // var jwt = require('jsonwebtoken');
+        // var decode = jwt.decode(token)
+        console.log(token)
+        axios({
+            method: 'get',
+            url: '/api/users/getAll',
+            headers: { Authorization: token }
+        })
+            .then(response => {
+
+                console.log(response.data)
+                var pageContent = (
+                    <div className="container widthadjust">
+                        <div className="profilecontainer ">
+                            {response.data.map(user => (
+
+                                <Users key={user.id} Username={user.username} Email={user.email} firstname={user.firstname} lastname={user.lastname} Authority={user.role} />
+
+                            ))}
+
+
+                        </div>
+                    </div>
+
+                )
+                this.setState({ pageContent: pageContent })
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
     }
     render() {
         return (

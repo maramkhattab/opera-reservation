@@ -23,7 +23,7 @@ class Login extends Component {
                     value: "",
                     validation: {
                         required: true,
-                        minLength: 5,
+                        minLength: 0,
                         maxLength: 15,
                         startLetter: true,
                         nospace: true
