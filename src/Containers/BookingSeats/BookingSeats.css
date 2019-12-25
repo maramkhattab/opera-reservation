@@ -259,13 +259,6 @@ body a:hover {
     background-attachment: fixed;
     font-family: 'Source Sans Pro', sans-serif;
 }
-.loginButton{
-    border-radius: 50px;
-    background-color: #1da1f2;
-    border-color: #1da1f2;
-    width: 80px;
-    margin-right: 20px;
-}
 
 .mr_agilemain span {
     color: #f00;

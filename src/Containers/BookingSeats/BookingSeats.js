@@ -411,7 +411,7 @@ render() {
               <br/>
                 <button 
                 type="submit"
-                className="btn btn-primary loginButton" >
+                 >
                             Confirm Selection
                             </button>
     </div>
