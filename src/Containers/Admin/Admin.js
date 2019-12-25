@@ -39,7 +39,7 @@ class Admin extends Component {
                             <div className="profilecontainer ">
                                 {response.data.map(user => (
 
-                                    <Requests key={user.id} Username="mirna" Email={user.email} Authority={user.role} />
+                                    <Requests key={user.id} Username={user.username} Email={user.email} Authority={user.role} />
 
                                 ))}
 
