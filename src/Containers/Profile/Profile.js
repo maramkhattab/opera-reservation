@@ -22,6 +22,29 @@ class Profile extends React.Component {
             </div>
         </div>)
     }
+    authorityRequest = event => {
+        console.log("button clicked");
+        var token = localStorage.getItem("jwtToken");
+        axios({
+            method: 'post',
+            url: '/api/request/createRequest',
+            data: { role: 2 },
+            headers: { Authorization: token }
+        })
+            .then(response => {
+                var pageContent = (<div className="container widthadjust">
+                    <div className="profilecontainer ">
+                        {/* <EditProfile city={user.city} gender={user.gender} firstname={user.firstname} lastname={user.lastname} address={user.address} birthdate={user.birthdate} /> */}
+                        Your Request has been sent to the adminstrator and is now pending approval!
+                </div>
+                </div>)
+                this.setState({ pageContent: pageContent });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+    }
     sidebarHandler = (event, choice) => {
         if (choice == "edit") {
             var token = localStorage.getItem("jwtToken");
@@ -61,6 +84,22 @@ class Profile extends React.Component {
             )
             this.setState({ pageContent: pageContent })
         }
+        else if (choice == "authority") {
+            var pageContent = (
+                <div className="container widthadjust">
+                    <div className="profilecontainer ">
+                        <h3> You are currently registered as a customer. Do you want to request an upgrade to an opera manager?</h3>
+                        <br />
+
+                        <button onClick={this.authorityRequest} className="btn btn-primary">Yes</button>
+
+                    </div>
+                </div>
+
+            )
+            this.setState({ pageContent: pageContent })
+
+        }
 
 
     }
@@ -75,6 +114,7 @@ class Profile extends React.Component {
                         <div className="list-group list-group-flush">
                             <a href="#" onClick={event => this.sidebarHandler(event, "reservation")} className="list-group-item list-group-item-action bg-light">Reservations</a>
                             <a href="#" onClick={event => this.sidebarHandler(event, "edit")} className="list-group-item list-group-item-action bg-light">Edit profile</a>
+                            <a href="#" onClick={event => this.sidebarHandler(event, "authority")} className="list-group-item list-group-item-action bg-light">Request Authority</a>
 
                         </div>
                     </div>

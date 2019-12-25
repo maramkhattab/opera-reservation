@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 //import { connect } from "react-redux";
 import NavBar from "../../Components/NavBar/NavBar";
-
+import axios from "../../axios-users"
 import "./Admin.css";
 import Users from "../../Components/Users/Users";
 import Requests from "../../Components/Requests/Requests";
@@ -16,34 +16,103 @@ class Admin extends Component {
         pageContent: (<div className="container widthadjust">
             <div className="profilecontainer ">
 
-
-                <Users Username={"Mirna Hatem"} Email={"mirnahatem@gmail.com"} address={"El Sheikh Zayed"} Authority={"Customer"} />
-
             </div>
         </div>)
     }
     sidebarHandler = (event, choice) => {
         if (choice == "requests") {
-            var pageContent = (<div className="container widthadjust">
-                <div className="profilecontainer ">
-
-                <Requests Username={"Mirna Hatem"} Email={"mirnahatem@gmail.com"} Authority={"Customer"}  />
-                </div>
-            </div>)
-            this.setState({ pageContent: pageContent })
+            var token = localStorage.getItem("jwtToken");
+            // var jwt = require('jsonwebtoken');
+            // var decode = jwt.decode(token)
+            console.log(token)
+            axios({
+                method: 'get',
+                url: '/api/users/getUser',
+                headers: { Authorization: token }
+            })
+                .then(response => {
+                    var user = response.data;
+                    console.log(user)
+                    var pageContent = (
+                        <div className="container widthadjust">
+                            <div className="profilecontainer ">
+                                <Requests Username={user.username} Email={user.email} Authority={user.role} />
+                            </div>
+                        </div>)
+                    this.setState({ pageContent: pageContent })
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
         else if (choice == "users") {
-            var pageContent = (
-                <div className="container widthadjust">
-                    <div className="profilecontainer ">
-                    <Users Username={"Mirna Hatem"} Email={"mirnahatem@gmail.com"}  Address={"El Sheikh Zayed"} Authority={"Customer"}/>
-                    
-                    </div>
-                </div>
+            var token = localStorage.getItem("jwtToken");
+            // var jwt = require('jsonwebtoken');
+            // var decode = jwt.decode(token)
+            console.log(token)
+            axios({
+                method: 'get',
+                url: '/api/users/getAll',
+                headers: { Authorization: token }
+            })
+                .then(response => {
 
-            )
-            this.setState({ pageContent: pageContent })
+                    console.log(response.data)
+                    var pageContent = (
+                        <div className="container widthadjust">
+                            <div className="profilecontainer ">
+                                {response.data.map(user => (
+
+                                    <Users key={user.id} Username={user.username} Email={user.email} firstname={user.firstname} lastname={user.lastname} Authority={user.role} />
+
+                                ))}
+
+
+                            </div>
+                        </div>
+
+                    )
+                    this.setState({ pageContent: pageContent })
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
         }
+    }
+    componentWillMount() {
+        var token = localStorage.getItem("jwtToken");
+        // var jwt = require('jsonwebtoken');
+        // var decode = jwt.decode(token)
+        console.log(token)
+        axios({
+            method: 'get',
+            url: '/api/users/getAll',
+            headers: { Authorization: token }
+        })
+            .then(response => {
+
+                console.log(response.data)
+                var pageContent = (
+                    <div className="container widthadjust">
+                        <div className="profilecontainer ">
+                            {response.data.map(user => (
+
+                                <Users key={user.id} Username={user.username} Email={user.email} firstname={user.firstname} lastname={user.lastname} Authority={user.role} />
+
+                            ))}
+
+
+                        </div>
+                    </div>
+
+                )
+                this.setState({ pageContent: pageContent })
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
 
     }
     render() {

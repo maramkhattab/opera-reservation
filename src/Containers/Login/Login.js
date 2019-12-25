@@ -23,7 +23,7 @@ class Login extends Component {
                     value: "",
                     validation: {
                         required: true,
-                        minLength: 5,
+                        minLength: 0,
                         maxLength: 15,
                         startLetter: true,
                         nospace: true
@@ -145,6 +145,9 @@ class Login extends Component {
                 if (response.data.role == 1) { this.props.history.push({ pathname: "/profile" }) }
                 else if (response.data.role == 2) {
                     this.props.history.push({ pathname: "/management" })
+                }
+                else if (response.data.role == 0) {
+                    this.props.history.push({ pathname: "/admin" })
                 }
                 ;
             })
