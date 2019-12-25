@@ -283,10 +283,11 @@ class Signup extends Component {
             url: '/api/users/register',
             data: body
         })
-        .then(function (response) {
+        .then(response=>{
             console.log(response);
+            this.props.history.push({ pathname: "/login" })
         })
-        .catch(function (error) {
+        .catch(error=>{
             console.log(error);
         });
        

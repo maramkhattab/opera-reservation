@@ -11,30 +11,8 @@ import EditProfile from "../EditProfile/EditProfile";
 
 class Profile extends React.Component {
     componentDidMount() {
-   
-    
-    
-        const user = {
 
-        };
-
-        var body = {
-       
-        }
-
-        axios({
-            method: 'post',
-            url: '/api/users/login',
-            data: body
-        })
-            .then(function (response) {
-               
-                console.log(response);
-               
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+  
       }
    
     state = {
@@ -73,7 +51,9 @@ class Profile extends React.Component {
             this.setState({ pageContent: pageContent })
         }
 
+
     }
+    
     render() {
         return (
             <div className="Body">

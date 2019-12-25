@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./CreateHall.css";
 import Button from "../../Components/UI/button//button";
 import Input from "../../Components/UI/Input/Input";
-
+import axios from "../../axios-users"
 class CreateHall extends Component {
 
     state = {
@@ -143,6 +143,53 @@ class CreateHall extends Component {
         }
         console.log(reader.result);
     }
+
+
+    submitHandler = event => {
+
+        event.preventDefault();
+        this.setState({ loading: true });
+        const formData = {};
+        for (let formElementIdentifier in this.state.signupForm) {
+            formData[formElementIdentifier] = this.state.signupForm[
+                formElementIdentifier
+            ].value;
+        }
+        // headers: {'Authorization':'jwt'  + token};
+
+        var body = {
+            number:this.state.createHallForm.hallnumber.value,
+            rows:this.state.createHallForm.numberOfRows.value,
+            cols:this.state.createHallForm.numberOfColumns.value
+
+        }
+var token1
+token1=localStorage.getItem("jwtToken");
+console.log(token1)
+console.log(body)
+        axios({
+            method: 'post',
+            url: 'api/halls/createHall',
+            data: body,
+            headers: {
+                Authorization:  token1,
+
+            }
+        })
+            .then(function (response) {
+               
+                console.log(response);
+            
+               
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+
+    };
+
     render() {
         const formElementsArray = [];
         for (let key in this.state.createHallForm) {

@@ -137,13 +137,13 @@ class Login extends Component {
             .then(response=> {
                 const token = response.data.token;
                 var jwt = require('jsonwebtoken');
-                var decode1 = jwt.decode(token)
-                var role=decode1.role
                 localStorage.setItem("jwtToken", token);
                 console.log(response);
-                if (role==1)
+                console.log(token);
+                if (response.datarole==1)
                 {this.props.history.push({ pathname: "/profile" })}
-                else if (role==2){
+                else if (response.data.role==2){
+                    console.log("hello")
                     this.props.history.push({ pathname: "/management" }) 
                 }
             ;
