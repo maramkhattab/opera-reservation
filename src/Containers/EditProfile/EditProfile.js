@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import "./EditProfile.css";
 import Button from "../../Components/UI/button//button";
 import Input from "../../Components/UI/Input/Input";
+import axios from "../../axios-users"
 class EditProfile extends Component {
 
     state = {
         editProfileForm: {
-
-
             password: {
                 elementType: "input",
                 elementConfig: {
@@ -61,7 +60,7 @@ class EditProfile extends Component {
                     type: "text",
                     placeholder: "Last Name"
                 },
-                value: this.props.lasttname,
+                value: this.props.lastname,
                 validation: {
                     required: false,
                     maxLength: 15
@@ -104,7 +103,7 @@ class EditProfile extends Component {
                     type: "text",
                     placeholder: "Address"
                 },
-                value: this.props.Address,
+                value: "",
                 validation: {
                     required: false
                 },
@@ -113,7 +112,7 @@ class EditProfile extends Component {
                 touched: true
             },
         },
-
+        gender: this.props.gender,
         formIsValid: false,
         loading: false,
         error: {},
@@ -176,6 +175,58 @@ class EditProfile extends Component {
 
         return isValid;
     }
+    genderChanged = (event) => {
+        var gender = 0;
+        if (event.target.value == "Female") {
+            gender = 1;
+        }
+        else if (event.target.value == "Male") {
+            gender = 0;
+        }
+
+        this.setState({ gender: gender });
+
+    }
+    submitHandler = event => {
+
+        event.preventDefault();
+        // this.setState({ loading: true });
+        // const formData = {};
+        // for (let formElementIdentifier in this.state.signupForm) {
+        //     formData[formElementIdentifier] = this.state.signupForm[
+        //         formElementIdentifier
+        //     ].value;
+        // }
+
+        // const user = {
+
+        // };
+
+        var body = {
+            password: this.state.editProfileForm.password.value.toString(),
+            firstname: this.state.editProfileForm.firstname.value.toString(),
+            lastname: this.state.editProfileForm.lastname.value.toString(),
+            city: this.state.editProfileForm.city.value.toString(),
+            address: this.state.editProfileForm.Address.value.toString(),
+            birthdate: this.state.editProfileForm.birthdate.value.toString(),
+            gender: this.state.gender,
+        }
+        var token = localStorage.getItem("jwtToken");
+        axios({
+            method: 'post',
+            url: '/api/users/updateUser',
+            data: body,
+            headers: { Authorization: token }
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+
+    };
     render() {
         const formElementsArray = [];
         for (let key in this.state.editProfileForm) {
@@ -185,10 +236,7 @@ class EditProfile extends Component {
             });
         }
         return (
-            // <div className="Body">
 
-            //     <div className="jumbotron jumbotron-fluid editProfilePageCanvas">
-            //         <div className="container">
             <form onSubmit={this.submitHandler} className="editProfileBox">
                 <h3 className="editProfileHeader">Edit your profile</h3>
                 {this.state.errorMessage}
@@ -210,7 +258,7 @@ class EditProfile extends Component {
                     />
                 ))}
                 <div className="form-group" >
-                    <select required={true} className="InputElement">
+                    <select required={true} className="InputElement" onChange={this.genderChanged}>
                         <option value="Male" selected={!this.props.gender}>Male</option>
                         <option value="Female" selected={this.props.gender} > Female</option>
 
